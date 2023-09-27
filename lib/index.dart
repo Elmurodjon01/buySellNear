@@ -13,3 +13,4 @@ export '/pages/community_page/community_page_widget.dart'
 export '/pages/c_t_detail_page/c_t_detail_page_widget.dart'
     show CTDetailPageWidget;
 export '/pages/c_upload_page/c_upload_page_widget.dart' show CUploadPageWidget;
+export '/edit_profile/edit_profile_widget.dart' show EditProfileWidget;

@@ -65,8 +65,10 @@ class _CUploadPageWidgetState extends State<CUploadPageWidget> {
             children: [
               Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
-                height: 50.0,
-                decoration: BoxDecoration(),
+                height: 65.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).main1,
+                ),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -83,14 +85,30 @@ class _CUploadPageWidgetState extends State<CUploadPageWidget> {
                         },
                         child: Icon(
                           Icons.arrow_back_ios,
-                          color: FlutterFlowTheme.of(context).sub1,
+                          color: FlutterFlowTheme.of(context).primaryText,
                           size: 24.0,
                         ),
                       ),
                     ),
-                    Text(
-                      'yanggi  po`st',
-                      style: FlutterFlowTheme.of(context).titleSmall,
+                    Align(
+                      alignment: AlignmentDirectional(0.00, 0.00),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(77.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'yanggi  po`st',
+                          style: FlutterFlowTheme.of(context)
+                              .titleMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleMediumFamily,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleMediumFamily),
+                              ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

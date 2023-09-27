@@ -46,8 +46,10 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
 
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
-      height: 80.0,
-      decoration: BoxDecoration(),
+      height: 65.0,
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).main1,
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -58,7 +60,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
             buttonSize: 40.0,
             icon: Icon(
               Icons.notifications,
-              color: FlutterFlowTheme.of(context).sub1,
+              color: FlutterFlowTheme.of(context).primaryText,
               size: 24.0,
             ),
             onPressed: () {
@@ -68,7 +70,13 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
           AuthUserStreamWidget(
             builder: (context) => Text(
               currentUserDisplayName,
-              style: FlutterFlowTheme.of(context).headlineSmall,
+              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                    fontFamily:
+                        FlutterFlowTheme.of(context).headlineSmallFamily,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).headlineSmallFamily),
+                  ),
             ),
           ),
           InkWell(
@@ -90,7 +98,7 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
             },
             child: Icon(
               Icons.search,
-              color: FlutterFlowTheme.of(context).sub1,
+              color: FlutterFlowTheme.of(context).primaryText,
               size: 24.0,
             ),
           ),

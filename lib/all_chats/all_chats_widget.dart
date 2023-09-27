@@ -47,27 +47,29 @@ class _AllChatsWidgetState extends State<AllChatsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          title: Stack(
-            children: [
-              Text(
-                'chats',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Colors.black,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).bodyMediumFamily),
-                    ),
-              ),
-            ],
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(65.0),
+          child: AppBar(
+            backgroundColor: FlutterFlowTheme.of(context).main1,
+            automaticallyImplyLeading: false,
+            title: Stack(
+              children: [
+                Text(
+                  'chats',
+                  style: FlutterFlowTheme.of(context).titleLarge.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).titleLargeFamily,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        fontWeight: FontWeight.w500,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).titleLargeFamily),
+                      ),
+                ),
+              ],
+            ),
+            actions: [],
+            centerTitle: true,
           ),
-          actions: [],
-          centerTitle: true,
-          elevation: 2.0,
         ),
         body: SafeArea(
           top: true,

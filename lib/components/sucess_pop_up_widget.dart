@@ -86,14 +86,8 @@ class _SucessPopUpWidgetState extends State<SucessPopUpWidget> {
                     ),
                   ),
                   Text(
-                    'Post Uploaded',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          fontSize: 14.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                        ),
+                    'Post Uploaded!',
+                    style: FlutterFlowTheme.of(context).titleLarge,
                   ),
                   FFButtonWidget(
                     onPressed: () async {
@@ -101,7 +95,7 @@ class _SucessPopUpWidgetState extends State<SucessPopUpWidget> {
 
                       context.pushNamed('HomePage');
                     },
-                    text: 'closed',
+                    text: 'check it out',
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:

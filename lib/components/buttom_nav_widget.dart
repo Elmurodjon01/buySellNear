@@ -45,7 +45,9 @@ class _ButtomNavWidgetState extends State<ButtomNavWidget> {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: 80.0,
-      decoration: BoxDecoration(),
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).main1,
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

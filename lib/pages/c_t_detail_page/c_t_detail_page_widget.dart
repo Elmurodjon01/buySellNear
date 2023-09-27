@@ -218,14 +218,14 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget>
                                                 Icons.favorite_outlined,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .main1,
                                                 size: 25.0,
                                               ),
                                               offIcon: Icon(
                                                 Icons.favorite_border,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
+                                                        .main1,
                                                 size: 25.0,
                                               ),
                                             ),
@@ -245,7 +245,9 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget>
                                             },
                                             child: Icon(
                                               Icons.chevron_left_outlined,
-                                              color: Colors.white,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .main1,
                                               size: 30.0,
                                             ),
                                           ),
@@ -553,6 +555,10 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget>
                                               stream: queryCommentRecord(
                                                 queryBuilder: (commentRecord) =>
                                                     commentRecord
+                                                        .where(
+                                                            'communitTalkRef',
+                                                            isEqualTo: widget
+                                                                .communityTalkRef)
                                                         .orderBy('commentTime'),
                                               ),
                                               builder: (context, snapshot) {
@@ -882,94 +888,84 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget>
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 8.0, 8.0, 8.0),
+                                    8.0, 0.0, 8.0, 8.0),
                                 child: TextFormField(
                                   controller: _model.textController,
+                                  autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: '댓글 입력',
+                                    labelText: 'Leave a comment ',
                                     labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMediumFamily,
-                                          fontSize: 10.0,
-                                          useGoogleFonts: GoogleFonts.asMap()
-                                              .containsKey(
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMediumFamily),
-                                        ),
+                                        .labelMedium,
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .warning,
-                                        width: 1.0,
+                                        color:
+                                            FlutterFlowTheme.of(context).main1,
+                                        width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
-                                            FlutterFlowTheme.of(context).main3,
-                                        width: 1.0,
+                                            FlutterFlowTheme.of(context).main1,
+                                        width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                        width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
-                                        width: 1.0,
+                                        width: 2.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                                      borderRadius: BorderRadius.circular(10.0),
                                     ),
                                   ),
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,
-                                  maxLines: 2,
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).sub1,
                                   validator: _model.textControllerValidator
                                       .asValidator(context),
                                 ),
                               ),
                             ),
-                            InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                await CommentRecord.collection
-                                    .doc()
-                                    .set(createCommentRecordData(
-                                      userRef: currentUserReference,
-                                      comment: valueOrDefault<String>(
-                                        _model.textController.text,
-                                        '-',
-                                      ),
-                                      commentTime: getCurrentTimestamp,
-                                      communitTalkRef: widget.communityTalkRef,
-                                    ));
-                                setState(() {
-                                  _model.textController?.clear();
-                                });
-                              },
-                              child: Icon(
-                                Icons.send_rounded,
-                                color: FlutterFlowTheme.of(context).sub1,
-                                size: 18.0,
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  await CommentRecord.collection
+                                      .doc()
+                                      .set(createCommentRecordData(
+                                        userRef: currentUserReference,
+                                        comment: _model.textController.text,
+                                        commentTime: getCurrentTimestamp,
+                                        communitTalkRef:
+                                            widget.communityTalkRef,
+                                      ));
+                                  setState(() {
+                                    _model.textController?.clear();
+                                  });
+                                },
+                                child: Icon(
+                                  Icons.send_rounded,
+                                  color: FlutterFlowTheme.of(context).main1,
+                                  size: 25.0,
+                                ),
                               ),
                             ),
                           ],

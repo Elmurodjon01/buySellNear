@@ -65,14 +65,14 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        wrapWithModel(
-                          model: _model.customAppBarModel,
-                          updateCallback: () => setState(() {}),
-                          child: CustomAppBarWidget(),
-                        ),
-                        Divider(
-                          thickness: 1.0,
-                          color: Color(0xFFACAEAF),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 5.0),
+                          child: wrapWithModel(
+                            model: _model.customAppBarModel,
+                            updateCallback: () => setState(() {}),
+                            child: CustomAppBarWidget(),
+                          ),
                         ),
                         Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
@@ -115,7 +115,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                         10.0, 0.0, 10.0, 0.0),
                                     child: Container(
                                       width: 100.0,
-                                      height: 135.0,
+                                      height: 140.0,
                                       decoration: BoxDecoration(),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -170,10 +170,13 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Container(
-                                                          width: 65.0,
-                                                          height: 20.0,
+                                                          width: 80.0,
+                                                          height: 40.0,
                                                           decoration:
                                                               BoxDecoration(
                                                             color: Color(
@@ -186,6 +189,9 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                             child: Text(
                                                               listViewCommunityTalkRecord
                                                                   .category,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .justify,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium,
@@ -389,7 +395,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                 ],
               ),
               Align(
-                alignment: AlignmentDirectional(0.73, 0.86),
+                alignment: AlignmentDirectional(0.89, 0.95),
                 child: FlutterFlowIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 27.5,

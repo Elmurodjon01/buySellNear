@@ -63,8 +63,10 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
           children: [
             Container(
               width: MediaQuery.sizeOf(context).width * 1.0,
-              height: 50.0,
-              decoration: BoxDecoration(),
+              height: 65.0,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).main1,
+              ),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -81,14 +83,28 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                       },
                       child: Icon(
                         Icons.arrow_back_ios,
-                        color: FlutterFlowTheme.of(context).sub1,
+                        color: FlutterFlowTheme.of(context).primaryText,
                         size: 24.0,
                       ),
                     ),
                   ),
-                  Text(
-                    'New Listing ',
-                    style: FlutterFlowTheme.of(context).titleSmall,
+                  Align(
+                    alignment: AlignmentDirectional(0.00, 0.00),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(77.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'New Listing ',
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .titleSmallFamily),
+                            ),
+                      ),
+                    ),
                   ),
                 ],
               ),
