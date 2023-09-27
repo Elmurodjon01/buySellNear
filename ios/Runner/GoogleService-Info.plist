@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA4PGSspl9-u-Rg3fj0bq41-BAB1E7Rmyw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>181553894391</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.review2</string>
+	<key>PROJECT_ID</key>
+	<string>johntest-686d9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>johntest-686d9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:181553894391:ios:44f1ebaf2c1311d53914f2</string>
+	<key>DATABASE_URL</key>
+	<string>https://johntest-686d9-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

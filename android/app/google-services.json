@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "181553894391",
+    "firebase_url": "https://johntest-686d9-default-rtdb.firebaseio.com",
+    "project_id": "johntest-686d9",
+    "storage_bucket": "johntest-686d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181553894391:android:8a8005a0e895ba823914f2",
+        "android_client_info": {
+          "package_name": "com.mycompany.review2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiTkfvkzQUkWHjY7J8pt_Ak504wF8F6UU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
