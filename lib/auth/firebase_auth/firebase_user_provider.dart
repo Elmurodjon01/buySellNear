@@ -8,6 +8,7 @@ export '../base_auth_user_provider.dart';
 class BuySellNearFirebaseUser extends BaseAuthUser {
   BuySellNearFirebaseUser(this.user);
   User? user;
+  @override
   bool get loggedIn => user != null;
 
   @override
@@ -23,7 +24,13 @@ class BuySellNearFirebaseUser extends BaseAuthUser {
   Future? delete() => user?.delete();
 
   @override
-  Future? updateEmail(String email) async => await user?.updateEmail(email);
+  Future? updateEmail(String email) async {
+    try {
+      await user?.updateEmail(email);
+    } catch (_) {
+      await user?.verifyBeforeUpdateEmail(email);
+    }
+  }
 
   @override
   Future? sendEmailVerification() => user?.sendEmailVerification();

@@ -5,7 +5,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 class FFChatPreview extends StatelessWidget {
   const FFChatPreview({
-    Key? key,
+    super.key,
     required this.lastChatText,
     required this.lastChatTime,
     required this.seen,
@@ -20,7 +20,7 @@ class FFChatPreview extends StatelessWidget {
     required this.previewTextStyle,
     this.contentPadding = EdgeInsets.zero,
     this.borderRadius = BorderRadius.zero,
-  }) : super(key: key);
+  });
 
   final String lastChatText;
   final DateTime? lastChatTime;
@@ -67,7 +67,7 @@ class FFChatPreview extends StatelessWidget {
                   AvatarContainer(
                     user: ChatUser(avatar: userProfilePic),
                     avatarMaxSize: 30.0,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxHeight: 420.0,
                       maxWidth: 420.0,
                     ),

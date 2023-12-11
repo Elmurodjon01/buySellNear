@@ -1,14 +1,12 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'buttom_nav_model.dart';
 export 'buttom_nav_model.dart';
 
 class ButtomNavWidget extends StatefulWidget {
-  const ButtomNavWidget({Key? key}) : super(key: key);
+  const ButtomNavWidget({super.key});
 
   @override
   _ButtomNavWidgetState createState() => _ButtomNavWidgetState();

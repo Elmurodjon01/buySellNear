@@ -2,25 +2,23 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/failed_popup_widget.dart';
-import '/components/sucess_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '/pages/sucess_pop_up/sucess_pop_up_widget.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'upload_post_model.dart';
 export 'upload_post_model.dart';
 
 class UploadPostWidget extends StatefulWidget {
-  const UploadPostWidget({Key? key}) : super(key: key);
+  const UploadPostWidget({super.key});
 
   @override
   _UploadPostWidgetState createState() => _UploadPostWidgetState();
@@ -37,7 +35,11 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
     _model = createModel(context, () => UploadPostModel());
 
     _model.textController1 ??= TextEditingController();
+    _model.textFieldFocusNode1 ??= FocusNode();
+
     _model.textController2 ??= TextEditingController();
+    _model.textFieldFocusNode2 ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -50,6 +52,15 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return Scaffold(
@@ -72,7 +83,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 7.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 7.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -89,10 +100,10 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: const AlignmentDirectional(0.00, 0.00),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(77.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(77.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'New Listing ',
                         style: FlutterFlowTheme.of(context).titleSmall.override(
@@ -110,18 +121,18 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDownValueController ??=
                         FormFieldController<String>(null),
-                    options: ['자유', '후기', '질문', '정보', '공유', '기타', '전체'],
+                    options: const ['자유', '후기', '질문', '정보', '공유', '기타', '전체'],
                     onChanged: (val) =>
                         setState(() => _model.dropDownValue = val),
                     width: 300.0,
@@ -146,7 +157,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     borderWidth: 2.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isSearchable: false,
                     isMultiSelect: false,
@@ -156,14 +167,15 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
             ),
             Container(
               width: double.infinity,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController1,
+                  focusNode: _model.textFieldFocusNode1,
                   onChanged: (_) => EasyDebounce.debounce(
                     '_model.textController1',
-                    Duration(milliseconds: 2000),
+                    const Duration(milliseconds: 2000),
                     () => setState(() {}),
                   ),
                   autofocus: true,
@@ -213,7 +225,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                       ),
                     ),
                     contentPadding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 12.0),
                   ),
                   style: FlutterFlowTheme.of(context).bodyLarge,
                   textAlign: TextAlign.start,
@@ -225,18 +237,19 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
               child: Container(
                 width: double.infinity,
                 height: 50.0,
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: TextFormField(
                     controller: _model.textController2,
+                    focusNode: _model.textFieldFocusNode2,
                     onChanged: (_) => EasyDebounce.debounce(
                       '_model.textController2',
-                      Duration(milliseconds: 2000),
+                      const Duration(milliseconds: 2000),
                       () => setState(() {}),
                     ),
                     autofocus: true,
@@ -286,7 +299,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                         ),
                       ),
                       contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 12.0),
                     ),
                     style: FlutterFlowTheme.of(context).bodyLarge,
                     textAlign: TextAlign.start,
@@ -312,7 +325,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           uploadedImages[uploadedImagesIndex];
                       return Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 0.0, 0.0),
                         child: Container(
                           width: 100.0,
                           height: 100.0,
@@ -343,13 +356,13 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               },
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30.0,
@@ -416,17 +429,15 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 180.0, 20.0, 20.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 150.0, 20.0, 20.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  if ((_model.textController1.text != null &&
-                          _model.textController1.text != '') &&
-                      (_model.textController2.text != null &&
-                          _model.textController2.text != '') &&
+                  if ((_model.textController1.text != '') &&
+                      (_model.textController2.text != '') &&
                       (_model.isDataUploading != null)) {
                     await PostRecord.collection.doc().set({
                       ...createPostRecordData(
@@ -436,7 +447,11 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                         uploadTime: getCurrentTimestamp,
                         uploadUser: currentUserReference,
                       ),
-                      'uploadedImages': _model.uploadedFileUrls,
+                      ...mapToFirestore(
+                        {
+                          'uploadedImages': _model.uploadedFileUrls,
+                        },
+                      ),
                     });
                     await showModalBottomSheet(
                       isScrollControlled: true,
@@ -446,9 +461,9 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                       builder: (context) {
                         return Padding(
                           padding: MediaQuery.viewInsetsOf(context),
-                          child: Container(
+                          child: SizedBox(
                             height: MediaQuery.sizeOf(context).height * 1.0,
-                            child: SucessPopUpWidget(),
+                            child: const SucessPopUpWidget(),
                           ),
                         );
                       },
@@ -462,9 +477,9 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                       builder: (context) {
                         return Padding(
                           padding: MediaQuery.viewInsetsOf(context),
-                          child: Container(
+                          child: SizedBox(
                             height: MediaQuery.sizeOf(context).height * 1.0,
-                            child: FailedPopupWidget(),
+                            child: const FailedPopupWidget(),
                           ),
                         );
                       },
@@ -479,7 +494,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0.00, 0.00),
+                    alignment: const AlignmentDirectional(0.00, 0.00),
                     child: Text(
                       'Post',
                       style: FlutterFlowTheme.of(context).titleLarge.override(

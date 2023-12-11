@@ -2,14 +2,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sucess_pop_up_model.dart';
 export 'sucess_pop_up_model.dart';
 
 class SucessPopUpWidget extends StatefulWidget {
-  const SucessPopUpWidget({Key? key}) : super(key: key);
+  const SucessPopUpWidget({super.key});
 
   @override
   _SucessPopUpWidgetState createState() => _SucessPopUpWidgetState();
@@ -46,7 +45,7 @@ class _SucessPopUpWidgetState extends State<SucessPopUpWidget> {
     return Container(
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: MediaQuery.sizeOf(context).height * 1.0,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0x9A000000),
       ),
       child: Column(
@@ -61,13 +60,13 @@ class _SucessPopUpWidgetState extends State<SucessPopUpWidget> {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(1.00, -1.00),
+                    alignment: const AlignmentDirectional(1.00, -1.00),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -99,9 +98,9 @@ class _SucessPopUpWidgetState extends State<SucessPopUpWidget> {
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context)
                           .titleSmall
@@ -113,7 +112,7 @@ class _SucessPopUpWidgetState extends State<SucessPopUpWidget> {
                                 FlutterFlowTheme.of(context).titleSmallFamily),
                           ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

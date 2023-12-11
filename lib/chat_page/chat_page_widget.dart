@@ -1,10 +1,7 @@
-import '/backend/backend.dart';
 import '/flutter_flow/chat/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -13,10 +10,10 @@ export 'chat_page_model.dart';
 
 class ChatPageWidget extends StatefulWidget {
   const ChatPageWidget({
-    Key? key,
+    super.key,
     this.chatRef,
     required this.chatUser,
-  }) : super(key: key);
+  });
 
   final DocumentReference? chatRef;
   final UserRecord? chatUser;
@@ -68,6 +65,15 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return StreamBuilder<UserRecord>(
@@ -90,11 +96,13 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
         }
         final chatPageUserRecord = snapshot.data!;
         return GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(65.0),
+              preferredSize: const Size.fromHeight(65.0),
               child: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).main1,
                 automaticallyImplyLeading: false,
@@ -119,13 +127,13 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               50.0, 0.0, 10.0, 0.0),
                           child: Container(
                             width: 40.0,
                             height: 40.0,
                             clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                             ),
                             child: Image.network(
@@ -153,7 +161,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     ),
                   ],
                 ),
-                actions: [],
+                actions: const [],
                 centerTitle: true,
               ),
             ),
@@ -168,7 +176,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                     ? FFChatPage(
                         chatInfo: snapshot.data!,
                         allowImages: true,
-                        backgroundColor: Color(0xFFF2F4F8),
+                        backgroundColor: const Color(0xFFF2F4F8),
                         timeDisplaySetting: TimeDisplaySetting.alwaysVisible,
                         currentUserBoxDecoration: BoxDecoration(
                           color: Colors.white,
@@ -178,7 +186,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                         otherUsersBoxDecoration: BoxDecoration(
-                          color: Color(0xFF4B39EF),
+                          color: const Color(0xFF4B39EF),
                           border: Border.all(
                             color: Colors.transparent,
                           ),
@@ -186,7 +194,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                         ),
                         currentUserTextStyle: GoogleFonts.getFont(
                           'DM Sans',
-                          color: Color(0xFF1E2429),
+                          color: const Color(0xFF1E2429),
                           fontWeight: FontWeight.w500,
                           fontSize: 14.0,
                           fontStyle: FontStyle.normal,
@@ -199,7 +207,7 @@ class _ChatPageWidgetState extends State<ChatPageWidget> {
                         ),
                         inputHintTextStyle: GoogleFonts.getFont(
                           'DM Sans',
-                          color: Color(0xFF95A1AC),
+                          color: const Color(0xFF95A1AC),
                           fontWeight: FontWeight.normal,
                           fontSize: 14.0,
                         ),

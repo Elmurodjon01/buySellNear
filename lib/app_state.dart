@@ -35,46 +35,81 @@ class FFAppState extends ChangeNotifier {
 
   String _bottomaction = '0';
   String get bottomaction => _bottomaction;
-  set bottomaction(String _value) {
-    _bottomaction = _value;
+  set bottomaction(String value) {
+    _bottomaction = value;
   }
 
   String _mainmenu = '0';
   String get mainmenu => _mainmenu;
-  set mainmenu(String _value) {
-    _mainmenu = _value;
+  set mainmenu(String value) {
+    _mainmenu = value;
   }
 
   int _galleryHeight = 100;
   int get galleryHeight => _galleryHeight;
-  set galleryHeight(int _value) {
-    _galleryHeight = _value;
+  set galleryHeight(int value) {
+    _galleryHeight = value;
   }
 
   bool _ex = false;
   bool get ex => _ex;
-  set ex(bool _value) {
-    _ex = _value;
+  set ex(bool value) {
+    _ex = value;
   }
 
   bool _likeToggle = false;
   bool get likeToggle => _likeToggle;
-  set likeToggle(bool _value) {
-    _likeToggle = _value;
-    prefs.setBool('ff_likeToggle', _value);
+  set likeToggle(bool value) {
+    _likeToggle = value;
+    prefs.setBool('ff_likeToggle', value);
   }
 
   int _isFamous = 4;
   int get isFamous => _isFamous;
-  set isFamous(int _value) {
-    _isFamous = _value;
-    prefs.setInt('ff_isFamous', _value);
+  set isFamous(int value) {
+    _isFamous = value;
+    prefs.setInt('ff_isFamous', value);
   }
 
   DocumentReference? _comments;
   DocumentReference? get comments => _comments;
-  set comments(DocumentReference? _value) {
-    _comments = _value;
+  set comments(DocumentReference? value) {
+    _comments = value;
+  }
+
+  int _pageIndex = 0;
+  int get pageIndex => _pageIndex;
+  set pageIndex(int value) {
+    _pageIndex = value;
+  }
+
+  List<String> _locations = ['용현 1, 4 동', '연수구 123', '제물포', '도화', '서추동 '];
+  List<String> get locations => _locations;
+  set locations(List<String> value) {
+    _locations = value;
+  }
+
+  void addToLocations(String value) {
+    _locations.add(value);
+  }
+
+  void removeFromLocations(String value) {
+    _locations.remove(value);
+  }
+
+  void removeAtIndexFromLocations(int index) {
+    _locations.removeAt(index);
+  }
+
+  void updateLocationsAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _locations[index] = updateFn(_locations[index]);
+  }
+
+  void insertAtIndexInLocations(int index, String value) {
+    _locations.insert(index, value);
   }
 }
 

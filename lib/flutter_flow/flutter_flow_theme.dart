@@ -153,14 +153,14 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFE21C3D);
   late Color info = const Color(0xFF1C4494);
 
-  late Color unset = Color(0x00FFFFFF);
-  late Color sub1 = Color(0xFF000000);
-  late Color mainC = Color(0xFFA1B231);
-  late Color main1 = Color(0xFFFFAC00);
-  late Color main2 = Color(0xFFFFD200);
-  late Color main3 = Color(0xFFBBDD00);
-  late Color backG1 = Color(0x5A000000);
-  late Color backG2 = Color(0x60FFFFFF);
+  late Color unset = const Color(0x00FFFFFF);
+  late Color sub1 = const Color(0xFF000000);
+  late Color mainC = const Color(0xFFA1B231);
+  late Color main1 = const Color(0xFFFFAC00);
+  late Color main2 = const Color(0xFFFFD200);
+  late Color main3 = const Color(0xFFBBDD00);
+  late Color backG1 = const Color(0x5A000000);
+  late Color backG2 = const Color(0x60FFFFFF);
 }
 
 abstract class Typography {
@@ -216,91 +216,91 @@ class MobileTypography extends Typography {
         fontSize: 35.0,
       );
   String get displaySmallFamily => 'Pretendard';
-  TextStyle get displaySmall => TextStyle(
+  TextStyle get displaySmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 30.0,
       );
   String get headlineLargeFamily => 'Pretendard';
-  TextStyle get headlineLarge => TextStyle(
+  TextStyle get headlineLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 26.0,
       );
   String get headlineMediumFamily => 'Pretendard';
-  TextStyle get headlineMedium => TextStyle(
+  TextStyle get headlineMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
   String get headlineSmallFamily => 'Pretendard';
-  TextStyle get headlineSmall => TextStyle(
+  TextStyle get headlineSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
   String get titleLargeFamily => 'Pretendard';
-  TextStyle get titleLarge => TextStyle(
+  TextStyle get titleLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
   String get titleMediumFamily => 'Pretendard';
-  TextStyle get titleMedium => TextStyle(
+  TextStyle get titleMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
   String get titleSmallFamily => 'Pretendard';
-  TextStyle get titleSmall => TextStyle(
+  TextStyle get titleSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
   String get labelLargeFamily => 'Pretendard';
-  TextStyle get labelLarge => TextStyle(
+  TextStyle get labelLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 15.0,
       );
   String get labelMediumFamily => 'Pretendard';
-  TextStyle get labelMedium => TextStyle(
+  TextStyle get labelMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
   String get labelSmallFamily => 'Pretendard';
-  TextStyle get labelSmall => TextStyle(
+  TextStyle get labelSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 13.0,
       );
   String get bodyLargeFamily => 'Pretendard';
-  TextStyle get bodyLarge => TextStyle(
+  TextStyle get bodyLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
   String get bodyMediumFamily => 'Pretendard';
-  TextStyle get bodyMedium => TextStyle(
+  TextStyle get bodyMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 11.0,
       );
   String get bodySmallFamily => 'Pretendard';
-  TextStyle get bodySmall => TextStyle(
+  TextStyle get bodySmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
@@ -314,105 +314,105 @@ class TabletTypography extends Typography {
   final FlutterFlowTheme theme;
 
   String get displayLargeFamily => 'Pretendard';
-  TextStyle get displayLarge => TextStyle(
+  TextStyle get displayLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 44.0,
       );
   String get displayMediumFamily => 'Pretendard';
-  TextStyle get displayMedium => TextStyle(
+  TextStyle get displayMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 38.0,
       );
   String get displaySmallFamily => 'Pretendard';
-  TextStyle get displaySmall => TextStyle(
+  TextStyle get displaySmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 32.0,
       );
   String get headlineLargeFamily => 'Pretendard';
-  TextStyle get headlineLarge => TextStyle(
+  TextStyle get headlineLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
   String get headlineMediumFamily => 'Pretendard';
-  TextStyle get headlineMedium => TextStyle(
+  TextStyle get headlineMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 26.0,
       );
   String get headlineSmallFamily => 'Pretendard';
-  TextStyle get headlineSmall => TextStyle(
+  TextStyle get headlineSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
   String get titleLargeFamily => 'Pretendard';
-  TextStyle get titleLarge => TextStyle(
+  TextStyle get titleLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 22.0,
       );
   String get titleMediumFamily => 'Pretendard';
-  TextStyle get titleMedium => TextStyle(
+  TextStyle get titleMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
       );
   String get titleSmallFamily => 'Pretendard';
-  TextStyle get titleSmall => TextStyle(
+  TextStyle get titleSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
       );
   String get labelLargeFamily => 'Pretendard';
-  TextStyle get labelLarge => TextStyle(
+  TextStyle get labelLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 17.0,
       );
   String get labelMediumFamily => 'Pretendard';
-  TextStyle get labelMedium => TextStyle(
+  TextStyle get labelMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
   String get labelSmallFamily => 'Pretendard';
-  TextStyle get labelSmall => TextStyle(
+  TextStyle get labelSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 15.0,
       );
   String get bodyLargeFamily => 'Pretendard';
-  TextStyle get bodyLarge => TextStyle(
+  TextStyle get bodyLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
   String get bodyMediumFamily => 'Pretendard';
-  TextStyle get bodyMedium => TextStyle(
+  TextStyle get bodyMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 13.0,
       );
   String get bodySmallFamily => 'Pretendard';
-  TextStyle get bodySmall => TextStyle(
+  TextStyle get bodySmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
@@ -426,105 +426,105 @@ class DesktopTypography extends Typography {
   final FlutterFlowTheme theme;
 
   String get displayLargeFamily => 'Pretendard';
-  TextStyle get displayLarge => TextStyle(
+  TextStyle get displayLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 75.0,
       );
   String get displayMediumFamily => 'Pretendard';
-  TextStyle get displayMedium => TextStyle(
+  TextStyle get displayMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 65.0,
       );
   String get displaySmallFamily => 'Pretendard';
-  TextStyle get displaySmall => TextStyle(
+  TextStyle get displaySmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.bold,
         fontSize: 55.0,
       );
   String get headlineLargeFamily => 'Pretendard';
-  TextStyle get headlineLarge => TextStyle(
+  TextStyle get headlineLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 45.0,
       );
   String get headlineMediumFamily => 'Pretendard';
-  TextStyle get headlineMedium => TextStyle(
+  TextStyle get headlineMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 39.0,
       );
   String get headlineSmallFamily => 'Pretendard';
-  TextStyle get headlineSmall => TextStyle(
+  TextStyle get headlineSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 34.0,
       );
   String get titleLargeFamily => 'Pretendard';
-  TextStyle get titleLarge => TextStyle(
+  TextStyle get titleLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
   String get titleMediumFamily => 'Pretendard';
-  TextStyle get titleMedium => TextStyle(
+  TextStyle get titleMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 30.0,
       );
   String get titleSmallFamily => 'Pretendard';
-  TextStyle get titleSmall => TextStyle(
+  TextStyle get titleSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 28.0,
       );
   String get labelLargeFamily => 'Pretendard';
-  TextStyle get labelLarge => TextStyle(
+  TextStyle get labelLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 26.0,
       );
   String get labelMediumFamily => 'Pretendard';
-  TextStyle get labelMedium => TextStyle(
+  TextStyle get labelMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
   String get labelSmallFamily => 'Pretendard';
-  TextStyle get labelSmall => TextStyle(
+  TextStyle get labelSmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 22.0,
       );
   String get bodyLargeFamily => 'Pretendard';
-  TextStyle get bodyLarge => TextStyle(
+  TextStyle get bodyLarge => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 20.0,
       );
   String get bodyMediumFamily => 'Pretendard';
-  TextStyle get bodyMedium => TextStyle(
+  TextStyle get bodyMedium => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
   String get bodySmallFamily => 'Pretendard';
-  TextStyle get bodySmall => TextStyle(
+  TextStyle get bodySmall => const TextStyle(
         fontFamily: 'Pretendard',
         color: Colors.black,
         fontWeight: FontWeight.normal,

@@ -1,10 +1,7 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/chat/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +9,7 @@ import 'all_chats_model.dart';
 export 'all_chats_model.dart';
 
 class AllChatsWidget extends StatefulWidget {
-  const AllChatsWidget({Key? key}) : super(key: key);
+  const AllChatsWidget({super.key});
 
   @override
   _AllChatsWidgetState createState() => _AllChatsWidgetState();
@@ -40,45 +37,55 @@ class _AllChatsWidgetState extends State<AllChatsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(65.0),
-          child: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).main1,
-            automaticallyImplyLeading: false,
-            title: Stack(
-              children: [
-                Text(
-                  'chats',
-                  style: FlutterFlowTheme.of(context).titleLarge.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).titleLargeFamily,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontWeight: FontWeight.w500,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).titleLargeFamily),
-                      ),
-                ),
-              ],
-            ),
-            actions: [],
-            centerTitle: true,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).main1,
+          automaticallyImplyLeading: false,
+          title: Stack(
+            children: [
+              Text(
+                'chats',
+                style: FlutterFlowTheme.of(context).titleLarge.override(
+                      fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      fontWeight: FontWeight.w500,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).titleLargeFamily),
+                    ),
+              ),
+            ],
           ),
+          actions: const [],
+          centerTitle: true,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
             child: StreamBuilder<List<ChatsRecord>>(
               stream: queryChatsRecord(
                 queryBuilder: (chatsRecord) => chatsRecord
-                    .where('users', arrayContains: currentUserReference)
+                    .where(
+                      'users',
+                      arrayContains: currentUserReference,
+                    )
                     .orderBy('last_message_time', descending: true),
               ),
               builder: (context, snapshot) {
@@ -132,11 +139,10 @@ class _AllChatsWidgetState extends State<AllChatsWidget> {
                           ),
                           lastChatText: chatInfo.chatPreviewMessage(),
                           lastChatTime: listViewChatsRecord.lastMessageTime,
-                          seen: listViewChatsRecord.lastMessageSeenBy!
-                              .contains(currentUserReference),
+                          seen: listViewChatsRecord.lastMessageSeenBy.contains(currentUserReference),
                           title: chatInfo.chatPreviewTitle(),
                           userProfilePic: chatInfo.chatPreviewPic(),
-                          color: Color(0xFFEEF0F5),
+                          color: const Color(0xFFEEF0F5),
                           unreadColor: Colors.blue,
                           titleTextStyle: GoogleFonts.getFont(
                             'DM Sans',
@@ -146,17 +152,17 @@ class _AllChatsWidgetState extends State<AllChatsWidget> {
                           ),
                           dateTextStyle: GoogleFonts.getFont(
                             'DM Sans',
-                            color: Color(0x73000000),
+                            color: const Color(0x73000000),
                             fontWeight: FontWeight.normal,
                             fontSize: 14.0,
                           ),
                           previewTextStyle: GoogleFonts.getFont(
                             'DM Sans',
-                            color: Color(0x73000000),
+                            color: const Color(0x73000000),
                             fontWeight: FontWeight.normal,
                             fontSize: 14.0,
                           ),
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               3.0, 3.0, 3.0, 3.0),
                           borderRadius: BorderRadius.circular(0.0),
                         );

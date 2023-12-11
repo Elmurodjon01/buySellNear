@@ -2,19 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
-import '../../auth/base_auth_user_provider.dart';
+import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -79,30 +75,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
         ),
         FFRoute(
           name: 'loginPage',
           path: '/loginPage',
-          builder: (context, params) => LoginPageWidget(),
+          builder: (context, params) => const LoginPageWidget(),
         ),
         FFRoute(
           name: 'uploadPost',
           path: '/uploadPost',
-          builder: (context, params) => UploadPostWidget(),
+          builder: (context, params) => const UploadPostWidget(),
         ),
         FFRoute(
           name: 'allChats',
           path: '/allChats',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'allChats')
-              : AllChatsWidget(),
+              ? const NavBarPage(initialPage: 'allChats')
+              : const AllChatsWidget(),
         ),
         FFRoute(
           name: 'ChatPage',
@@ -120,15 +116,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+              ? const NavBarPage(initialPage: 'HomePage')
+              : const HomePageWidget(),
         ),
         FFRoute(
           name: 'profile',
-          path: '/profile',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'profile')
-              : ProfileWidget(),
+          path: '/profileOld',
+          builder: (context, params) => const ProfileWidget(),
         ),
         FFRoute(
           name: 'postDetailPage',
@@ -139,16 +133,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'searchPage',
-          path: '/searchPage',
-          builder: (context, params) => SearchPageWidget(),
-        ),
-        FFRoute(
           name: 'communityPage',
           path: '/communityPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'communityPage')
-              : CommunityPageWidget(),
+              ? const NavBarPage(initialPage: 'communityPage')
+              : const CommunityPageWidget(),
         ),
         FFRoute(
           name: 'CTDetailPage',
@@ -161,12 +150,43 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'CUploadPage',
           path: '/cUploadPage',
-          builder: (context, params) => CUploadPageWidget(),
+          builder: (context, params) => const CUploadPageWidget(),
         ),
         FFRoute(
           name: 'editProfile',
           path: '/editProfile',
-          builder: (context, params) => EditProfileWidget(),
+          builder: (context, params) => const EditProfileWidget(),
+        ),
+        FFRoute(
+          name: 'account',
+          path: '/account',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'account')
+              : const AccountWidget(),
+        ),
+        FFRoute(
+          name: 'Nearby',
+          path: '/nearby',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'Nearby')
+              : const NearbyWidget(),
+        ),
+        FFRoute(
+          name: 'nearbyDetailPage',
+          path: '/nearbyDetailPage',
+          builder: (context, params) => NearbyDetailPageWidget(
+            title: params.getParam('title', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'FAQspage',
+          path: '/fAQspage',
+          builder: (context, params) => const FAQspageWidget(),
+        ),
+        FFRoute(
+          name: 'realEstate',
+          path: '/realEstate',
+          builder: (context, params) => const RealEstateWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -391,5 +411,25 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+}
+
+class RootPageContext {
+  const RootPageContext(this.isRootPage, [this.errorRoute]);
+  final bool isRootPage;
+  final String? errorRoute;
+
+  static bool isInactiveRootPage(BuildContext context) {
+    final rootPageContext = context.read<RootPageContext?>();
+    final isRootPage = rootPageContext?.isRootPage ?? false;
+    final location = GoRouter.of(context).location;
+    return isRootPage &&
+        location != '/' &&
+        location != rootPageContext?.errorRoute;
+  }
+
+  static Widget wrap(Widget child, {String? errorRoute}) => Provider.value(
+        value: RootPageContext(true, errorRoute),
+        child: child,
+      );
 }
