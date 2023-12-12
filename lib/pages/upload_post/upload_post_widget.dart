@@ -19,7 +19,12 @@ import 'upload_post_model.dart';
 export 'upload_post_model.dart';
 
 class UploadPostWidget extends StatefulWidget {
-  const UploadPostWidget({super.key});
+  const UploadPostWidget({
+    super.key,
+    this.location,
+  });
+
+  final LatLng? location;
 
   @override
   _UploadPostWidgetState createState() => _UploadPostWidgetState();
@@ -656,44 +661,53 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 10.0),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: MediaQuery.sizeOf(context).height * 0.05,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7.0),
-                        border: Border.all(
-                          color: const Color(0xFFB8B6B6),
-                          width: 2.0,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('mappageCopy');
+                      },
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 0.05,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7.0),
+                          border: Border.all(
+                            color: const Color(0xFFB8B6B6),
+                            width: 2.0,
+                          ),
                         ),
-                      ),
-                      alignment: const AlignmentDirectional(0.00, 0.00),
-                      child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            12.0, 0.0, 12.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Select',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    color: const Color(0xFFA3A2A2),
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
-                                  ),
-                            ),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              color: Color(0xFFA3A2A2),
-                              size: 24.0,
-                            ),
-                          ],
+                        alignment: const AlignmentDirectional(0.00, 0.00),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 12.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Select',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
+                                      color: const Color(0xFFA3A2A2),
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
+                                    ),
+                              ),
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Color(0xFFA3A2A2),
+                                size: 24.0,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -723,6 +737,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                         location: 'Andijan',
                         forSale: _model.choiceChipsValue == 'Free',
                         negoitable: _model.checkboxValue,
+                        meetLocation: widget.location,
                       ),
                       ...mapToFirestore(
                         {

@@ -80,6 +80,11 @@ class PostRecord extends FirestoreRecord {
   bool get negoitable => _negoitable ?? false;
   bool hasNegoitable() => _negoitable != null;
 
+  // "meetLocation" field.
+  LatLng? _meetLocation;
+  LatLng? get meetLocation => _meetLocation;
+  bool hasMeetLocation() => _meetLocation != null;
+
   void _initializeFields() {
     _category = snapshotData['category'] as String?;
     _title = snapshotData['title'] as String?;
@@ -94,6 +99,7 @@ class PostRecord extends FirestoreRecord {
     _location = snapshotData['location'] as String?;
     _forSale = snapshotData['forSale'] as bool?;
     _negoitable = snapshotData['negoitable'] as bool?;
+    _meetLocation = snapshotData['meetLocation'] as LatLng?;
   }
 
   static CollectionReference get collection =>
@@ -140,6 +146,7 @@ Map<String, dynamic> createPostRecordData({
   String? location,
   bool? forSale,
   bool? negoitable,
+  LatLng? meetLocation,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -153,6 +160,7 @@ Map<String, dynamic> createPostRecordData({
       'location': location,
       'forSale': forSale,
       'negoitable': negoitable,
+      'meetLocation': meetLocation,
     }.withoutNulls,
   );
 
@@ -177,7 +185,8 @@ class PostRecordDocumentEquality implements Equality<PostRecord> {
         e1?.price == e2?.price &&
         e1?.location == e2?.location &&
         e1?.forSale == e2?.forSale &&
-        e1?.negoitable == e2?.negoitable;
+        e1?.negoitable == e2?.negoitable &&
+        e1?.meetLocation == e2?.meetLocation;
   }
 
   @override
@@ -194,7 +203,8 @@ class PostRecordDocumentEquality implements Equality<PostRecord> {
         e?.price,
         e?.location,
         e?.forSale,
-        e?.negoitable
+        e?.negoitable,
+        e?.meetLocation
       ]);
 
   @override

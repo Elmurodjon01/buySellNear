@@ -89,6 +89,7 @@ dependencies:
   path_provider_platform_interface: 2.0.6
   pdfx: 2.3.0
   plugin_platform_interface: 2.1.6
+  pointer_interceptor: 0.9.3+4
   provider: 6.0.5
   rxdart: 0.27.7
   shared_preferences: 2.2.2

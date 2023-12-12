@@ -91,7 +91,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'uploadPost',
           path: '/uploadPost',
-          builder: (context, params) => const UploadPostWidget(),
+          builder: (context, params) => UploadPostWidget(
+            location: params.getParam('location', ParamType.LatLng),
+          ),
         ),
         FFRoute(
           name: 'allChats',
@@ -200,6 +202,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'mappage',
           path: '/mappage',
           builder: (context, params) => const MappageWidget(),
+        ),
+        FFRoute(
+          name: 'mappageCopy',
+          path: '/mappageCopy',
+          builder: (context, params) => const MappageCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
