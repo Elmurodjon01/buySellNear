@@ -120,11 +120,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const HomePageWidget(),
         ),
         FFRoute(
-          name: 'profile',
-          path: '/profileOld',
-          builder: (context, params) => const ProfileWidget(),
-        ),
-        FFRoute(
           name: 'postDetailPage',
           path: '/postDetailPage',
           builder: (context, params) => PostDetailPageWidget(
@@ -187,6 +182,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'realEstate',
           path: '/realEstate',
           builder: (context, params) => const RealEstateWidget(),
+        ),
+        FFRoute(
+          name: 'showImage',
+          path: '/showImage',
+          builder: (context, params) => ShowImageWidget(
+            postDocument: params.getParam(
+                'postDocument', ParamType.DocumentReference, false, ['post']),
+          ),
+        ),
+        FFRoute(
+          name: 'villagePost',
+          path: '/villagePost',
+          builder: (context, params) => const VillagePostWidget(),
+        ),
+        FFRoute(
+          name: 'mappage',
+          path: '/mappage',
+          builder: (context, params) => const MappageWidget(),
+        ),
+        FFRoute(
+          name: 'myLocationPage',
+          path: '/myLocationPage',
+          builder: (context, params) => const MyLocationPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

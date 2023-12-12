@@ -488,7 +488,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           phoneNumber: _model.cityController2.text,
                         ));
 
-                        context.pushNamed('profile');
+                        context.pushNamed('account');
                       },
                       text: 'Save Changes',
                       options: FFButtonOptions(

@@ -111,6 +111,12 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInLocations(int index, String value) {
     _locations.insert(index, value);
   }
+
+  int _villageChoice = 0;
+  int get villageChoice => _villageChoice;
+  set villageChoice(int value) {
+    _villageChoice = value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

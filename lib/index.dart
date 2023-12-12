@@ -4,7 +4,6 @@ export '/pages/upload_post/upload_post_widget.dart' show UploadPostWidget;
 export '/all_chats/all_chats_widget.dart' show AllChatsWidget;
 export '/chat_page/chat_page_widget.dart' show ChatPageWidget;
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
-export '/pages/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/post_detail_page/post_detail_page_widget.dart'
     show PostDetailPageWidget;
 export '/pages/community_page/community_page_widget.dart'
@@ -19,3 +18,8 @@ export '/nearby_detail_page/nearby_detail_page_widget.dart'
     show NearbyDetailPageWidget;
 export '/f_a_qspage/f_a_qspage_widget.dart' show FAQspageWidget;
 export '/real_estate/real_estate_widget.dart' show RealEstateWidget;
+export '/show_image/show_image_widget.dart' show ShowImageWidget;
+export '/village_post/village_post_widget.dart' show VillagePostWidget;
+export '/mappage/mappage_widget.dart' show MappageWidget;
+export '/my_location_page/my_location_page_widget.dart'
+    show MyLocationPageWidget;

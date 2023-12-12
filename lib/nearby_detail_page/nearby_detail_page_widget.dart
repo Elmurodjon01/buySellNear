@@ -95,20 +95,17 @@ class _NearbyDetailPageWidgetState extends State<NearbyDetailPageWidget> {
           centerTitle: true,
           elevation: 2.0,
         ),
-        body: SafeArea(
-          top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Align(
-                alignment: const AlignmentDirectional(0.00, 0.00),
-                child: Text(
-                  widget.title!,
-                  style: FlutterFlowTheme.of(context).displayLarge,
-                ),
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Align(
+              alignment: const AlignmentDirectional(0.00, 0.00),
+              child: Text(
+                widget.title!,
+                style: FlutterFlowTheme.of(context).displayLarge,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

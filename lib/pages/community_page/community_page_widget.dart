@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/components/create_post_widget.dart';
 import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -391,7 +392,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
               ],
             ),
             Align(
-              alignment: const AlignmentDirectional(0.89, 0.95),
+              alignment: const AlignmentDirectional(0.88, 0.91),
               child: FlutterFlowIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 27.5,
@@ -404,15 +405,27 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                   size: 24.0,
                 ),
                 onPressed: () async {
-                  context.pushNamed(
-                    'CUploadPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: const TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.bottomToTop,
-                      ),
+                  await showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: const Color(0x44000000),
+                    enableDrag: false,
+                    context: context,
+                    builder: (context) {
+                      return GestureDetector(
+                        onTap: () => _model.unfocusNode.canRequestFocus
+                            ? FocusScope.of(context)
+                                .requestFocus(_model.unfocusNode)
+                            : FocusScope.of(context).unfocus(),
+                        child: Padding(
+                          padding: MediaQuery.viewInsetsOf(context),
+                          child: SizedBox(
+                            height: MediaQuery.sizeOf(context).height * 1.0,
+                            child: const CreatePostWidget(),
+                          ),
+                        ),
+                      );
                     },
-                  );
+                  ).then((value) => safeSetState(() {}));
                 },
               ),
             ),

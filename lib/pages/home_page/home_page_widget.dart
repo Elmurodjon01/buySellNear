@@ -295,7 +295,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   onPressed: () async {
                     await showModalBottomSheet(
                       isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
+                      backgroundColor: const Color(0x44000000),
                       enableDrag: false,
                       context: context,
                       builder: (context) {
@@ -306,7 +306,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               : FocusScope.of(context).unfocus(),
                           child: Padding(
                             padding: MediaQuery.viewInsetsOf(context),
-                            child: const CreatePostWidget(),
+                            child: SizedBox(
+                              height: MediaQuery.sizeOf(context).height * 1.0,
+                              child: const CreatePostWidget(),
+                            ),
                           ),
                         );
                       },

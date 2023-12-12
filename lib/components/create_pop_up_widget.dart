@@ -153,12 +153,12 @@ class _CreatePopUpWidgetState extends State<CreatePopUpWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Icon(
-                          Icons.car_rental,
+                          Icons.holiday_village_outlined,
                           color: FlutterFlowTheme.of(context).sub1,
                           size: 24.0,
                         ),
                         Text(
-                          '중고차',
+                          '동네',
                           style: FlutterFlowTheme.of(context).labelMedium,
                         ),
                       ]
@@ -197,7 +197,7 @@ class _CreatePopUpWidgetState extends State<CreatePopUpWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Icon(
-                      Icons.car_rental,
+                      Icons.shopify_rounded,
                       color: FlutterFlowTheme.of(context).sub1,
                       size: 24.0,
                     ),

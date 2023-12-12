@@ -63,12 +63,30 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
               _model.dropDownValue ??= FFAppState().locations.first,
             ),
             options: FFAppState().locations.take(4).toList(),
-            onChanged: (val) => setState(() => _model.dropDownValue = val),
-            width: 150.0,
+            onChanged: (val) async {
+              setState(() => _model.dropDownValue = val);
+              context.pushNamed('myLocationPage');
+            },
+            width: valueOrDefault<double>(
+              () {
+                if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
+                  return 165.0;
+                } else if (MediaQuery.sizeOf(context).width <
+                    kBreakpointMedium) {
+                  return 250.0;
+                } else if (MediaQuery.sizeOf(context).width <
+                    kBreakpointLarge) {
+                  return 350.0;
+                } else {
+                  return 165.0;
+                }
+              }(),
+              165.0,
+            ),
             height: 50.0,
             textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                  fontSize: 20.0,
+                  fontSize: 15.0,
                   useGoogleFonts: GoogleFonts.asMap().containsKey(
                       FlutterFlowTheme.of(context).bodyMediumFamily),
                 ),
@@ -106,8 +124,8 @@ class _CustomAppbarWidgetState extends State<CustomAppbarWidget> {
                       color: FlutterFlowTheme.of(context).sub1,
                       size: 24.0,
                     ),
-                    onPressed: () {
-                      print('IconButton pressed ...');
+                    onPressed: () async {
+                      context.pushNamed('mappage');
                     },
                   ),
                 ),

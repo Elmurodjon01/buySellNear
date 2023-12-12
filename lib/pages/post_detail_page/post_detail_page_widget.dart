@@ -122,14 +122,32 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                         itemBuilder: (context, imagesIndex) {
                                           final imagesItem =
                                               images[imagesIndex];
-                                          return ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(0.0),
-                                            child: Image.network(
-                                              imagesItem,
-                                              width: 300.0,
-                                              height: 200.0,
-                                              fit: BoxFit.cover,
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'showImage',
+                                                queryParameters: {
+                                                  'postDocument':
+                                                      serializeParam(
+                                                    widget.postRef,
+                                                    ParamType.DocumentReference,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(0.0),
+                                              child: Image.network(
+                                                imagesItem,
+                                                width: 300.0,
+                                                height: 200.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           );
                                         },
