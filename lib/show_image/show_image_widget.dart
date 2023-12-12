@@ -134,9 +134,8 @@ class _ShowImageWidgetState extends State<ShowImageWidget> {
                           Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: MediaQuery.sizeOf(context).height * 0.85,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
+                            decoration: const BoxDecoration(
+                              color: Colors.black,
                             ),
                             child: Builder(
                               builder: (context) {
@@ -149,7 +148,7 @@ class _ShowImageWidgetState extends State<ShowImageWidget> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 130.0),
+                                            0.0, 0.0, 0.0, 180.0),
                                         child: PageView.builder(
                                           controller: _model
                                                   .pageViewController ??=

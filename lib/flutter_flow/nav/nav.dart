@@ -200,11 +200,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'mappage',
           path: '/mappage',
           builder: (context, params) => const MappageWidget(),
-        ),
-        FFRoute(
-          name: 'myLocationPage',
-          path: '/myLocationPage',
-          builder: (context, params) => const MyLocationPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

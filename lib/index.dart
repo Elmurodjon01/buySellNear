@@ -21,5 +21,3 @@ export '/real_estate/real_estate_widget.dart' show RealEstateWidget;
 export '/show_image/show_image_widget.dart' show ShowImageWidget;
 export '/village_post/village_post_widget.dart' show VillagePostWidget;
 export '/mappage/mappage_widget.dart' show MappageWidget;
-export '/my_location_page/my_location_page_widget.dart'
-    show MyLocationPageWidget;
