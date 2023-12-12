@@ -71,197 +71,157 @@ class _MappageWidgetState extends State<MappageWidget> {
       );
     }
 
-    return StreamBuilder<List<UserCredentialsRecord>>(
-      stream: queryUserCredentialsRecord(
-        singleRecord: true,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
-              child: SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: SpinKitChasingDots(
-                  color: FlutterFlowTheme.of(context).info,
-                  size: 50.0,
-                ),
-              ),
-            ),
-          );
-        }
-        List<UserCredentialsRecord> mappageUserCredentialsRecordList =
-            snapshot.data!;
-        // Return an empty Container when the item does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
-        final mappageUserCredentialsRecord =
-            mappageUserCredentialsRecordList.isNotEmpty
-                ? mappageUserCredentialsRecordList.first
-                : null;
-        return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            key: scaffoldKey,
-            resizeToAvoidBottomInset: false,
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Column(
+    return GestureDetector(
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        key: scaffoldKey,
+        resizeToAvoidBottomInset: false,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Row(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController ??=
-                          FormFieldController<String>(
-                        _model.dropDownValue ??=
-                            mappageUserCredentialsRecord?.locations.first,
-                      ),
-                      options: mappageUserCredentialsRecord!.locations,
-                      onChanged: (val) =>
-                          setState(() => _model.dropDownValue = val),
-                      width: valueOrDefault<double>(
-                        () {
-                          if (MediaQuery.sizeOf(context).width <
-                              kBreakpointSmall) {
-                            return 165.0;
-                          } else if (MediaQuery.sizeOf(context).width <
-                              kBreakpointMedium) {
-                            return 250.0;
-                          } else if (MediaQuery.sizeOf(context).width <
-                              kBreakpointLarge) {
-                            return 350.0;
-                          } else {
-                            return 165.0;
-                          }
-                        }(),
-                        165.0,
-                      ),
-                      height: 50.0,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .bodyMedium
-                          .override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                            fontSize: 15.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).sub1,
-                        size: 24.0,
-                      ),
-                      elevation: 2.0,
-                      borderColor: Colors.transparent,
-                      borderWidth: 2.0,
-                      borderRadius: 8.0,
-                      margin:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                      hidesUnderline: true,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                    ),
-                    Container(
-                      width: 198.0,
-                      height: 100.0,
-                      decoration: const BoxDecoration(),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Container(
-                    width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: MediaQuery.sizeOf(context).height * 0.6,
-                    decoration: const BoxDecoration(),
-                    child: Builder(builder: (context) {
-                      final googleMapMarker = currentUserLocationValue;
-                      return FlutterFlowGoogleMap(
-                        controller: _model.googleMapsController,
-                        onCameraIdle: (latLng) =>
-                            setState(() => _model.googleMapsCenter = latLng),
-                        initialLocation: _model.googleMapsCenter ??=
-                            currentUserLocationValue!,
-                        markers: [
-                          if (googleMapMarker != null)
-                            FlutterFlowMarker(
-                              googleMapMarker.serialize(),
-                              googleMapMarker,
-                            ),
-                        ],
-                        markerColor: GoogleMarkerColor.violet,
-                        mapType: MapType.normal,
-                        style: GoogleMapStyle.standard,
-                        initialZoom: 14.0,
-                        allowInteraction: true,
-                        allowZoom: true,
-                        showZoomControls: true,
-                        showLocation: true,
-                        showCompass: true,
-                        showMapToolbar: false,
-                        showTraffic: false,
-                        centerMapOnMarkerTap: true,
-                      );
-                    }),
+                FlutterFlowDropDown<String>(
+                  controller: _model.dropDownValueController ??=
+                      FormFieldController<String>(
+                    _model.dropDownValue ??=
+                        FFAppState().locations.length.toString(),
                   ),
+                  options: FFAppState().locations,
+                  onChanged: (val) =>
+                      setState(() => _model.dropDownValue = val),
+                  width: valueOrDefault<double>(
+                    () {
+                      if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
+                        return 165.0;
+                      } else if (MediaQuery.sizeOf(context).width <
+                          kBreakpointMedium) {
+                        return 250.0;
+                      } else if (MediaQuery.sizeOf(context).width <
+                          kBreakpointLarge) {
+                        return 350.0;
+                      } else {
+                        return 165.0;
+                      }
+                    }(),
+                    165.0,
+                  ),
+                  height: 50.0,
+                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                        fontSize: 15.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                      ),
+                  icon: Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    color: FlutterFlowTheme.of(context).sub1,
+                    size: 24.0,
+                  ),
+                  elevation: 2.0,
+                  borderColor: Colors.transparent,
+                  borderWidth: 2.0,
+                  borderRadius: 8.0,
+                  margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                  hidesUnderline: true,
+                  isSearchable: false,
+                  isMultiSelect: false,
                 ),
                 Container(
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: MediaQuery.sizeOf(context).height * 0.08,
+                  width: 198.0,
+                  height: 100.0,
                   decoration: const BoxDecoration(),
-                  alignment: const AlignmentDirectional(0.00, 0.00),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      currentUserLocationValue = await getCurrentUserLocation(
-                          defaultLocation: const LatLng(0.0, 0.0));
-
-                      context.pushNamed('HomePage');
-
-                      await UserCredentialsRecord.collection.doc().set({
-                        ...mapToFirestore(
-                          {
-                            'locations': [currentUserLocationValue?.toString()],
-                          },
-                        ),
-                      });
-                    },
-                    text: 'Save',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .titleSmall
-                          .override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).titleSmallFamily,
-                            color: Colors.white,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).titleSmallFamily),
-                          ),
-                      elevation: 3.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
                 ),
               ],
             ),
-          ),
-        );
-      },
+            Expanded(
+              child: Container(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 0.6,
+                decoration: const BoxDecoration(),
+                child: Builder(builder: (context) {
+                  final googleMapMarker = currentUserLocationValue;
+                  return FlutterFlowGoogleMap(
+                    controller: _model.googleMapsController,
+                    onCameraIdle: (latLng) =>
+                        setState(() => _model.googleMapsCenter = latLng),
+                    initialLocation: _model.googleMapsCenter ??=
+                        currentUserLocationValue!,
+                    markers: [
+                      if (googleMapMarker != null)
+                        FlutterFlowMarker(
+                          googleMapMarker.serialize(),
+                          googleMapMarker,
+                        ),
+                    ],
+                    markerColor: GoogleMarkerColor.violet,
+                    mapType: MapType.normal,
+                    style: GoogleMapStyle.standard,
+                    initialZoom: 14.0,
+                    allowInteraction: true,
+                    allowZoom: true,
+                    showZoomControls: true,
+                    showLocation: true,
+                    showCompass: true,
+                    showMapToolbar: false,
+                    showTraffic: false,
+                    centerMapOnMarkerTap: true,
+                  );
+                }),
+              ),
+            ),
+            Container(
+              width: MediaQuery.sizeOf(context).width * 1.0,
+              height: MediaQuery.sizeOf(context).height * 0.08,
+              decoration: const BoxDecoration(),
+              alignment: const AlignmentDirectional(0.00, 0.00),
+              child: FFButtonWidget(
+                onPressed: () async {
+                  currentUserLocationValue = await getCurrentUserLocation(
+                      defaultLocation: const LatLng(0.0, 0.0));
+
+                  context.pushNamed('HomePage');
+
+                  await UserCredentialsRecord.collection.doc().set({
+                    ...mapToFirestore(
+                      {
+                        'locations': [currentUserLocationValue?.toString()],
+                      },
+                    ),
+                  });
+                },
+                text: 'Save',
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).titleSmallFamily,
+                        color: Colors.white,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).titleSmallFamily),
+                      ),
+                  elevation: 3.0,
+                  borderSide: const BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
