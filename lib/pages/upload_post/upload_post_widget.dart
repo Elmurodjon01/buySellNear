@@ -481,6 +481,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           style: FlutterFlowTheme.of(context).bodyLarge,
                           textAlign: TextAlign.start,
                           maxLines: null,
+                          keyboardType: TextInputType.number,
                           cursorColor: FlutterFlowTheme.of(context).backG1,
                           validator: _model.textController2Validator
                               .asValidator(context),
