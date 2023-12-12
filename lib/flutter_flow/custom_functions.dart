@@ -35,3 +35,12 @@ String? villageChoice(int? userChoice) {
     return "동네사진전";
   }
 }
+
+String? checkNegoitable(bool? isNegoitable) {
+  if (isNegoitable == true) {
+    return "Negoitable";
+  } else if (isNegoitable == false) {
+    return "Fixed price";
+  }
+  return "erorr";
+}

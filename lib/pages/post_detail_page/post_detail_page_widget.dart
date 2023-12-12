@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
@@ -589,13 +590,32 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'price',
+                                              postDetailPagePostRecord.price
+                                                  .toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .headlineSmall,
+                                                      .headlineSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmallFamily,
+                                                        fontSize: 18.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallFamily),
+                                                      ),
                                             ),
                                             Text(
-                                              'Fixed Price',
+                                              valueOrDefault<String>(
+                                                functions.checkNegoitable(
+                                                    postDetailPagePostRecord
+                                                        .negoitable),
+                                                'false',
+                                              ),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -606,6 +626,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                                                 .titleSmallFamily,
                                                         color:
                                                             const Color(0xC2C0BCBC),
+                                                        fontSize: 14.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -670,6 +691,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                                                       context)
                                                                   .titleMediumFamily,
                                                           color: Colors.white,
+                                                          fontSize: 16.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(

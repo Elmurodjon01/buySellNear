@@ -206,7 +206,7 @@ class _ShowImageWidgetState extends State<ShowImageWidget> {
                                               dotHeight: 12.0,
                                               dotColor:
                                                   FlutterFlowTheme.of(context)
-                                                      .error,
+                                                      .accent2,
                                               activeDotColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,

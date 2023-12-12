@@ -16,8 +16,8 @@ class UserCredentialsRecord extends FirestoreRecord {
   }
 
   // "locations" field.
-  List<String>? _locations;
-  List<String> get locations => _locations ?? const [];
+  List<LatLng>? _locations;
+  List<LatLng> get locations => _locations ?? const [];
   bool hasLocations() => _locations != null;
 
   void _initializeFields() {

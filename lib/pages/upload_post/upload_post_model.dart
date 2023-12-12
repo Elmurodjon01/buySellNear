@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 class UploadPostModel extends FlutterFlowModel<UploadPostWidget> {
   ///  State fields for stateful widgets in this page.
 
+  bool isDataUploading = false;
+  List<FFUploadedFile> uploadedLocalFiles = [];
+  List<String> uploadedFileUrls = [];
+
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -13,13 +17,19 @@ class UploadPostModel extends FlutterFlowModel<UploadPostWidget> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
+  // State field(s) for ChoiceChips widget.
+  String? choiceChipsValue;
+  FormFieldController<List<String>>? choiceChipsValueController;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
-  bool isDataUploading = false;
-  List<FFUploadedFile> uploadedLocalFiles = [];
-  List<String> uploadedFileUrls = [];
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode3;
+  TextEditingController? textController3;
+  String? Function(BuildContext, String?)? textController3Validator;
 
   /// Initialization and disposal methods.
 
@@ -33,6 +43,9 @@ class UploadPostModel extends FlutterFlowModel<UploadPostWidget> {
 
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
+
+    textFieldFocusNode3?.dispose();
+    textController3?.dispose();
   }
 
   /// Action blocks are added here.

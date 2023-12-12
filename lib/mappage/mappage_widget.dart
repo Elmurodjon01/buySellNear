@@ -191,7 +191,7 @@ class _MappageWidgetState extends State<MappageWidget> {
                   await UserCredentialsRecord.collection.doc().set({
                     ...mapToFirestore(
                       {
-                        'locations': [currentUserLocationValue?.toString()],
+                        'locations': [currentUserLocationValue?.toGeoPoint()],
                       },
                     ),
                   });

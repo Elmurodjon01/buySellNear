@@ -60,6 +60,26 @@ class PostRecord extends FirestoreRecord {
   List<String> get uploadedImages => _uploadedImages ?? const [];
   bool hasUploadedImages() => _uploadedImages != null;
 
+  // "price" field.
+  int? _price;
+  int get price => _price ?? 0;
+  bool hasPrice() => _price != null;
+
+  // "location" field.
+  String? _location;
+  String get location => _location ?? '';
+  bool hasLocation() => _location != null;
+
+  // "forSale" field.
+  bool? _forSale;
+  bool get forSale => _forSale ?? false;
+  bool hasForSale() => _forSale != null;
+
+  // "negoitable" field.
+  bool? _negoitable;
+  bool get negoitable => _negoitable ?? false;
+  bool hasNegoitable() => _negoitable != null;
+
   void _initializeFields() {
     _category = snapshotData['category'] as String?;
     _title = snapshotData['title'] as String?;
@@ -70,6 +90,10 @@ class PostRecord extends FirestoreRecord {
     _likeUsers = getDataList(snapshotData['likeUsers']);
     _commentCount = getDataList(snapshotData['commentCount']);
     _uploadedImages = getDataList(snapshotData['uploadedImages']);
+    _price = castToType<int>(snapshotData['price']);
+    _location = snapshotData['location'] as String?;
+    _forSale = snapshotData['forSale'] as bool?;
+    _negoitable = snapshotData['negoitable'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -112,6 +136,10 @@ Map<String, dynamic> createPostRecordData({
   DateTime? uploadTime,
   DocumentReference? uploadUser,
   int? like,
+  int? price,
+  String? location,
+  bool? forSale,
+  bool? negoitable,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -121,6 +149,10 @@ Map<String, dynamic> createPostRecordData({
       'uploadTime': uploadTime,
       'uploadUser': uploadUser,
       'like': like,
+      'price': price,
+      'location': location,
+      'forSale': forSale,
+      'negoitable': negoitable,
     }.withoutNulls,
   );
 
@@ -141,7 +173,11 @@ class PostRecordDocumentEquality implements Equality<PostRecord> {
         e1?.like == e2?.like &&
         listEquality.equals(e1?.likeUsers, e2?.likeUsers) &&
         listEquality.equals(e1?.commentCount, e2?.commentCount) &&
-        listEquality.equals(e1?.uploadedImages, e2?.uploadedImages);
+        listEquality.equals(e1?.uploadedImages, e2?.uploadedImages) &&
+        e1?.price == e2?.price &&
+        e1?.location == e2?.location &&
+        e1?.forSale == e2?.forSale &&
+        e1?.negoitable == e2?.negoitable;
   }
 
   @override
@@ -154,7 +190,11 @@ class PostRecordDocumentEquality implements Equality<PostRecord> {
         e?.like,
         e?.likeUsers,
         e?.commentCount,
-        e?.uploadedImages
+        e?.uploadedImages,
+        e?.price,
+        e?.location,
+        e?.forSale,
+        e?.negoitable
       ]);
 
   @override
