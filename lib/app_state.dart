@@ -117,6 +117,37 @@ class FFAppState extends ChangeNotifier {
   set villageChoice(int value) {
     _villageChoice = value;
   }
+
+  List<String> _isImage = [
+    'https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg'
+  ];
+  List<String> get isImage => _isImage;
+  set isImage(List<String> value) {
+    _isImage = value;
+  }
+
+  void addToIsImage(String value) {
+    _isImage.add(value);
+  }
+
+  void removeFromIsImage(String value) {
+    _isImage.remove(value);
+  }
+
+  void removeAtIndexFromIsImage(int index) {
+    _isImage.removeAt(index);
+  }
+
+  void updateIsImageAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _isImage[index] = updateFn(_isImage[index]);
+  }
+
+  void insertAtIndexInIsImage(int index, String value) {
+    _isImage.insert(index, value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

@@ -22,9 +22,17 @@ class UploadPostWidget extends StatefulWidget {
   const UploadPostWidget({
     super.key,
     this.location,
+    this.category,
+    this.title,
+    this.price,
+    this.desc,
   });
 
   final LatLng? location;
+  final String? category;
+  final String? title;
+  final int? price;
+  final String? desc;
 
   @override
   _UploadPostWidgetState createState() => _UploadPostWidgetState();
@@ -40,13 +48,14 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
     super.initState();
     _model = createModel(context, () => UploadPostModel());
 
-    _model.textController1 ??= TextEditingController();
+    _model.textController1 ??= TextEditingController(text: widget.title);
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.textController2 ??=
+        TextEditingController(text: widget.price?.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController(text: widget.desc);
     _model.textFieldFocusNode3 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -122,6 +131,111 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                                   FlutterFlowTheme.of(context)
                                       .titleSmallFamily),
                             ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(-1.00, 0.00),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                      child: Text(
+                        'where to meet',
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  fontSize: 16.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleMediumFamily),
+                                ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 10.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed(
+                          'mappageCopy',
+                          queryParameters: {
+                            'category': serializeParam(
+                              _model.dropDownValue,
+                              ParamType.String,
+                            ),
+                            'title': serializeParam(
+                              _model.textController1.text,
+                              ParamType.String,
+                            ),
+                            'price': serializeParam(
+                              int.tryParse(_model.textController2.text),
+                              ParamType.int,
+                            ),
+                            'description': serializeParam(
+                              _model.textController3.text,
+                              ParamType.String,
+                            ),
+                            'negoitable': serializeParam(
+                              _model.checkboxValue,
+                              ParamType.bool,
+                            ),
+                          }.withoutNulls,
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 0.05,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7.0),
+                          border: Border.all(
+                            color: const Color(0xFFB8B6B6),
+                            width: 2.0,
+                          ),
+                        ),
+                        alignment: const AlignmentDirectional(0.00, 0.00),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 12.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Select',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelMediumFamily,
+                                      color: const Color(0xFFA3A2A2),
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMediumFamily),
+                                    ),
+                              ),
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Color(0xFFA3A2A2),
+                                size: 24.0,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -245,7 +359,12 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 10.0),
                     child: FlutterFlowDropDown<String>(
                       controller: _model.dropDownValueController ??=
-                          FormFieldController<String>(null),
+                          FormFieldController<String>(
+                        _model.dropDownValue ??=
+                            widget.category != null && widget.category != ''
+                                ? widget.category
+                                : '',
+                      ),
                       options: const ['자유', '후기', '질문', '정보', '공유', '기타', '전체'],
                       onChanged: (val) =>
                           setState(() => _model.dropDownValue = val),
@@ -521,7 +640,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                             FlutterFlowTheme.of(context).primaryBackground,
                       ),
                       child: Checkbox(
-                        value: _model.checkboxValue ??= true,
+                        value: _model.checkboxValue ??= false,
                         onChanged: (newValue) async {
                           setState(() => _model.checkboxValue = newValue!);
                         },
@@ -583,7 +702,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: MediaQuery.sizeOf(context).height * 0.18,
+                      height: MediaQuery.sizeOf(context).height * 0.17,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(7.0),
                         border: Border.all(
@@ -636,87 +755,6 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Align(
-                    alignment: const AlignmentDirectional(-1.00, 0.00),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                      child: Text(
-                        'where to meet',
-                        style:
-                            FlutterFlowTheme.of(context).titleMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleMediumFamily,
-                                  fontSize: 16.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleMediumFamily),
-                                ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 10.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed('mappageCopy');
-                      },
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        height: MediaQuery.sizeOf(context).height * 0.05,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7.0),
-                          border: Border.all(
-                            color: const Color(0xFFB8B6B6),
-                            width: 2.0,
-                          ),
-                        ),
-                        alignment: const AlignmentDirectional(0.00, 0.00),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 12.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Select',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .labelMediumFamily,
-                                      color: const Color(0xFFA3A2A2),
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMediumFamily),
-                                    ),
-                              ),
-                              const Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color(0xFFA3A2A2),
-                                size: 24.0,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
@@ -742,7 +780,9 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                       ),
                       ...mapToFirestore(
                         {
-                          'uploadedImages': _model.uploadedFileUrls,
+                          'uploadedImages': _model.uploadedFileUrls.isNotEmpty
+                              ? _model.uploadedFileUrls
+                              : FFAppState().isImage,
                         },
                       ),
                     });

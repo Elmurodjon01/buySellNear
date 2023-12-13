@@ -53,50 +53,52 @@ class _FAQspageWidgetState extends State<FAQspageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: MediaQuery.sizeOf(context).width * 1.0,
-              height: 60.0,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).main1,
-              ),
-              child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.safePop();
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 24.0,
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: 60.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).main1,
+                ),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.safePop();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 24.0,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: FlutterFlowPdfViewer(
-                networkPath: 'http://www.pdf995.com/samples/pdf.pdf',
-                width: MediaQuery.sizeOf(context).width * 1.0,
-                height: MediaQuery.sizeOf(context).height * 1.0,
-                horizontalScroll: false,
+              Expanded(
+                child: FlutterFlowPdfViewer(
+                  networkPath: 'http://www.pdf995.com/samples/pdf.pdf',
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: MediaQuery.sizeOf(context).height * 1.0,
+                  horizontalScroll: false,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

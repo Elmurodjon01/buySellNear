@@ -93,6 +93,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/uploadPost',
           builder: (context, params) => UploadPostWidget(
             location: params.getParam('location', ParamType.LatLng),
+            category: params.getParam('category', ParamType.String),
+            title: params.getParam('title', ParamType.String),
+            price: params.getParam('price', ParamType.int),
+            desc: params.getParam('desc', ParamType.String),
           ),
         ),
         FFRoute(
@@ -206,7 +210,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'mappageCopy',
           path: '/mappageCopy',
-          builder: (context, params) => const MappageCopyWidget(),
+          builder: (context, params) => MappageCopyWidget(
+            category: params.getParam('category', ParamType.String),
+            title: params.getParam('title', ParamType.String),
+            price: params.getParam('price', ParamType.int),
+            description: params.getParam('description', ParamType.String),
+            negoitable: params.getParam('negoitable', ParamType.bool),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
