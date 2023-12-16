@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -147,6 +146,55 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInIsImage(int index, String value) {
     _isImage.insert(index, value);
+  }
+
+  ListeningJourneyStruct _studyTie = ListeningJourneyStruct();
+  ListeningJourneyStruct get studyTie => _studyTie;
+  set studyTie(ListeningJourneyStruct value) {
+    _studyTie = value;
+  }
+
+  void updateStudyTieStruct(Function(ListeningJourneyStruct) updateFn) {
+    updateFn(_studyTie);
+  }
+
+  EndData2Struct _endData = EndData2Struct();
+  EndData2Struct get endData => _endData;
+  set endData(EndData2Struct value) {
+    _endData = value;
+  }
+
+  void updateEndDataStruct(Function(EndData2Struct) updateFn) {
+    updateFn(_endData);
+  }
+
+  List<DateTime> _datas = [];
+  List<DateTime> get datas => _datas;
+  set datas(List<DateTime> value) {
+    _datas = value;
+  }
+
+  void addToDatas(DateTime value) {
+    _datas.add(value);
+  }
+
+  void removeFromDatas(DateTime value) {
+    _datas.remove(value);
+  }
+
+  void removeAtIndexFromDatas(int index) {
+    _datas.removeAt(index);
+  }
+
+  void updateDatasAtIndex(
+    int index,
+    DateTime Function(DateTime) updateFn,
+  ) {
+    _datas[index] = updateFn(_datas[index]);
+  }
+
+  void insertAtIndexInDatas(int index, DateTime value) {
+    _datas.insert(index, value);
   }
 }
 

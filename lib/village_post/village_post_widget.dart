@@ -92,7 +92,7 @@ class _VillagePostWidgetState extends State<VillagePostWidget> {
                             },
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.00, 0.00),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Text(
                               '동네생활 글쓰기',
                               style: FlutterFlowTheme.of(context)
@@ -246,7 +246,7 @@ class _VillagePostWidgetState extends State<VillagePostWidget> {
                         borderRadius: BorderRadius.circular(7.0),
                       ),
                       child: Align(
-                        alignment: const AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 12.0, 0.0),
@@ -311,16 +311,16 @@ class _VillagePostWidgetState extends State<VillagePostWidget> {
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.00, 0.00),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 0.9,
                         decoration: const BoxDecoration(),
-                        alignment: const AlignmentDirectional(-1.00, 0.00),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Align(
-                          alignment: const AlignmentDirectional(-1.00, 0.00),
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
                           child: Text(
                             '제목을 입력하세요',
                             style: FlutterFlowTheme.of(context)
@@ -396,7 +396,7 @@ class _VillagePostWidgetState extends State<VillagePostWidget> {
                   width: 1.0,
                 ),
               ),
-              alignment: const AlignmentDirectional(-1.00, 0.00),
+              alignment: const AlignmentDirectional(-1.0, 0.0),
               child: Container(
                 width: MediaQuery.sizeOf(context).width * 0.6,
                 decoration: const BoxDecoration(),

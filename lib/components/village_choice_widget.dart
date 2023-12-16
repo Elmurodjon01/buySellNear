@@ -42,12 +42,12 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: const AlignmentDirectional(0.00, 1.00),
+      alignment: const AlignmentDirectional(0.0, 1.0),
       child: Container(
         width: MediaQuery.sizeOf(context).width * 1.0,
         height: MediaQuery.sizeOf(context).height * 1.0,
         decoration: const BoxDecoration(),
-        alignment: const AlignmentDirectional(0.00, 1.00),
+        alignment: const AlignmentDirectional(0.0, 1.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
@@ -85,7 +85,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(-1.00, 0.00),
+                      alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: Text(
                         '게시글의 주제를 선택해주세요.',
                         style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -99,7 +99,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Container(
                         height: MediaQuery.sizeOf(context).height * 0.6,
                         decoration: const BoxDecoration(),
@@ -108,7 +108,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -137,7 +137,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -166,7 +166,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -195,7 +195,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -224,7 +224,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -253,7 +253,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -282,7 +282,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -311,7 +311,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -340,7 +340,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -369,7 +369,7 @@ class _VillageChoiceWidgetState extends State<VillageChoiceWidget> {
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.00, 0.00),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,

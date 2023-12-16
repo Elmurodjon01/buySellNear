@@ -128,7 +128,7 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(1.00, -1.00),
+                                              const AlignmentDirectional(1.0, -1.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -182,7 +182,7 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.00, 1.00),
+                                    alignment: const AlignmentDirectional(0.0, 1.0),
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
@@ -447,7 +447,7 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                           children: [
                                             Align(
                                               alignment: const AlignmentDirectional(
-                                                  -1.00, 0.00),
+                                                  -1.0, 0.0),
                                               child: Padding(
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -680,8 +680,8 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                                                         ),
                                                                         Align(
                                                                           alignment: const AlignmentDirectional(
-                                                                              1.00,
-                                                                              1.00),
+                                                                              1.0,
+                                                                              1.0),
                                                                           child:
                                                                               Padding(
                                                                             padding: const EdgeInsetsDirectional.fromSTEB(

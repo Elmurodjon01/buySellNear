@@ -103,7 +103,7 @@ class _CUploadPageWidgetState extends State<CUploadPageWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(77.0, 0.0, 0.0, 0.0),
@@ -502,7 +502,7 @@ class _CUploadPageWidgetState extends State<CUploadPageWidget> {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: Align(
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Text(
                         'Post',
                         style: FlutterFlowTheme.of(context).titleLarge.override(

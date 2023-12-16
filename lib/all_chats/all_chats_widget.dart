@@ -162,8 +162,7 @@ class _AllChatsWidgetState extends State<AllChatsWidget> {
                             fontWeight: FontWeight.normal,
                             fontSize: 14.0,
                           ),
-                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                              3.0, 3.0, 3.0, 3.0),
+                          contentPadding: const EdgeInsets.all(3.0),
                           borderRadius: BorderRadius.circular(0.0),
                         );
                       },

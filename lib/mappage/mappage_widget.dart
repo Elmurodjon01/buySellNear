@@ -83,65 +83,85 @@ class _MappageWidgetState extends State<MappageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  FlutterFlowDropDown<String>(
-                    controller: _model.dropDownValueController ??=
-                        FormFieldController<String>(
-                      _model.dropDownValue ??=
-                          FFAppState().locations.length.toString(),
-                    ),
-                    options: FFAppState().locations,
-                    onChanged: (val) =>
-                        setState(() => _model.dropDownValue = val),
-                    width: valueOrDefault<double>(
-                      () {
-                        if (MediaQuery.sizeOf(context).width <
-                            kBreakpointSmall) {
-                          return 165.0;
-                        } else if (MediaQuery.sizeOf(context).width <
-                            kBreakpointMedium) {
-                          return 250.0;
-                        } else if (MediaQuery.sizeOf(context).width <
-                            kBreakpointLarge) {
-                          return 350.0;
-                        } else {
-                          return 165.0;
-                        }
-                      }(),
-                      165.0,
-                    ),
-                    height: 50.0,
-                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          fontSize: 15.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(17.0, 0.0, 17.0, 0.0),
+                child: Container(
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: 50.0,
+                  decoration: const BoxDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.safePop();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 25.0,
                         ),
-                    icon: Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: FlutterFlowTheme.of(context).sub1,
-                      size: 24.0,
-                    ),
-                    elevation: 2.0,
-                    borderColor: Colors.transparent,
-                    borderWidth: 2.0,
-                    borderRadius: 8.0,
-                    margin:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                    hidesUnderline: true,
-                    isSearchable: false,
-                    isMultiSelect: false,
+                      ),
+                      FlutterFlowDropDown<String>(
+                        controller: _model.dropDownValueController ??=
+                            FormFieldController<String>(
+                          _model.dropDownValue ??=
+                              FFAppState().locations.length.toString(),
+                        ),
+                        options: FFAppState().locations,
+                        onChanged: (val) =>
+                            setState(() => _model.dropDownValue = val),
+                        width: valueOrDefault<double>(
+                          () {
+                            if (MediaQuery.sizeOf(context).width <
+                                kBreakpointSmall) {
+                              return 165.0;
+                            } else if (MediaQuery.sizeOf(context).width <
+                                kBreakpointMedium) {
+                              return 250.0;
+                            } else if (MediaQuery.sizeOf(context).width <
+                                kBreakpointLarge) {
+                              return 350.0;
+                            } else {
+                              return 165.0;
+                            }
+                          }(),
+                          165.0,
+                        ),
+                        height: 50.0,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .bodyMedium
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              fontSize: 15.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: FlutterFlowTheme.of(context).sub1,
+                          size: 24.0,
+                        ),
+                        elevation: 2.0,
+                        borderColor: Colors.transparent,
+                        borderWidth: 2.0,
+                        borderRadius: 8.0,
+                        margin: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 4.0, 16.0, 4.0),
+                        hidesUnderline: true,
+                        isSearchable: false,
+                        isMultiSelect: false,
+                      ),
+                    ],
                   ),
-                  Container(
-                    width: 198.0,
-                    height: 100.0,
-                    decoration: const BoxDecoration(),
-                  ),
-                ],
+                ),
               ),
               Expanded(
                 child: Container(
@@ -183,13 +203,11 @@ class _MappageWidgetState extends State<MappageWidget> {
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 0.08,
                 decoration: const BoxDecoration(),
-                alignment: const AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     currentUserLocationValue = await getCurrentUserLocation(
                         defaultLocation: const LatLng(0.0, 0.0));
-
-                    context.pushNamed('HomePage');
 
                     await UserCredentialsRecord.collection.doc().set({
                       ...mapToFirestore(
@@ -198,15 +216,18 @@ class _MappageWidgetState extends State<MappageWidget> {
                         },
                       ),
                     });
+
+                    context.pushNamed('HomePage');
                   },
-                  text: 'Save',
+                  text: 'Confirm',
                   options: FFButtonOptions(
+                    width: MediaQuery.sizeOf(context).width * 0.4,
                     height: 40.0,
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: FlutterFlowTheme.of(context).main1,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).titleSmallFamily,
@@ -219,7 +240,7 @@ class _MappageWidgetState extends State<MappageWidget> {
                       color: Colors.transparent,
                       width: 1.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
               ),

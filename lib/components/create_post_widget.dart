@@ -62,7 +62,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
               alignment: const AlignmentDirectional(0.884, 0.911),
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.70, 0.59),
+                  alignment: const AlignmentDirectional(0.7, 0.59),
                   child: Container(
                     width: 180.0,
                     height: 400.0,

@@ -131,6 +131,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'Nearby': const NearbyWidget(),
       'allChats': const AllChatsWidget(),
       'account': const AccountWidget(),
+      'sample': const SampleWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -188,6 +189,14 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.location_history,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
               size: 24.0,
             ),
             label: 'Home',

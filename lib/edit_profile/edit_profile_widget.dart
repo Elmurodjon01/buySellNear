@@ -114,7 +114,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
@@ -251,8 +251,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        2.0, 2.0, 2.0, 2.0),
+                                    padding: const EdgeInsets.all(2.0),
                                     child: Container(
                                       width: 90.0,
                                       height: 90.0,
@@ -458,7 +457,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                   ],
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-0.02, 0.90),
+                  alignment: const AlignmentDirectional(-0.02, 0.9),
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),

@@ -60,7 +60,7 @@ class _AccountWidgetState extends State<AccountWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.00, 0.00),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -79,7 +79,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(0.00, 0.00),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   15.0, 0.0, 0.0, 0.0),
@@ -89,7 +89,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Container(
                                       width: 50.0,
                                       height: 50.0,
@@ -104,7 +104,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(1.00, 1.00),
+                                    alignment: const AlignmentDirectional(1.0, 1.0),
                                     child: Icon(
                                       Icons.edit_outlined,
                                       color: FlutterFlowTheme.of(context)
@@ -115,7 +115,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                                   Flexible(
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.00, 0.00),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 16.0, 0.0, 12.0),
@@ -129,7 +129,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 30.0),
@@ -167,7 +167,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                                                     child: Align(
                                                       alignment:
                                                           const AlignmentDirectional(
-                                                              0.00, 0.00),
+                                                              0.0, 0.0),
                                                       child: Text(
                                                         'View profile',
                                                         style:
@@ -190,7 +190,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.00, 0.00),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   14.0, 40.0, 0.0, 0.0),
@@ -201,7 +201,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.00, 0.00),
+                            alignment: const AlignmentDirectional(0.0, 0.0),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 17.0, 0.0, 0.0),
@@ -215,8 +215,7 @@ class _AccountWidgetState extends State<AccountWidget> {
                                   scrollDirection: Axis.horizontal,
                                   children: [
                                     Align(
-                                      alignment:
-                                          const AlignmentDirectional(0.00, 0.00),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: FlutterFlowChoiceChips(
                                         options: const [
                                           ChipData('전체'),

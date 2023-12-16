@@ -127,7 +127,7 @@ class _MappageCopyWidgetState extends State<MappageCopyWidget> {
                   child: Stack(
                     children: [
                       Align(
-                        alignment: const AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: FlutterFlowGoogleMap(
                           controller: _model.googleMapsController,
                           onCameraIdle: (latLng) =>
@@ -149,7 +149,7 @@ class _MappageCopyWidgetState extends State<MappageCopyWidget> {
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: PointerInterceptor(
                           intercepting: isWeb,
                           child: Icon(
@@ -167,7 +167,7 @@ class _MappageCopyWidgetState extends State<MappageCopyWidget> {
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 0.08,
                 decoration: const BoxDecoration(),
-                alignment: const AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     context.pushNamed(

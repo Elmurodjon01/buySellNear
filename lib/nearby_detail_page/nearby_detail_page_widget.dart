@@ -99,7 +99,7 @@ class _NearbyDetailPageWidgetState extends State<NearbyDetailPageWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.00, 0.00),
+              alignment: const AlignmentDirectional(0.0, 0.0),
               child: Text(
                 widget.title!,
                 style: FlutterFlowTheme.of(context).displayLarge,

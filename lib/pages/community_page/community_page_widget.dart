@@ -190,7 +190,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                           child: Align(
                                                             alignment:
                                                                 const AlignmentDirectional(
-                                                                    0.00, 0.00),
+                                                                    0.0, 0.0),
                                                             child: Text(
                                                               listViewCommunityTalkRecord
                                                                   .category,

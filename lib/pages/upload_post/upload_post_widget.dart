@@ -117,7 +117,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.00, 0.00),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(77.0, 0.0, 0.0, 0.0),
@@ -143,7 +143,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(-1.00, 0.00),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
@@ -206,7 +206,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                             width: 2.0,
                           ),
                         ),
-                        alignment: const AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 12.0, 0.0),
@@ -334,7 +334,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                                   width: 2.0,
                                 ),
                               ),
-                              alignment: const AlignmentDirectional(0.00, 0.00),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Icon(
                                 Icons.camera_alt_outlined,
                                 color: FlutterFlowTheme.of(context).accent2,
@@ -399,7 +399,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(-1.00, 0.00),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
@@ -430,7 +430,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           width: 2.0,
                         ),
                       ),
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: TextFormField(
                         controller: _model.textController1,
                         focusNode: _model.textFieldFocusNode1,
@@ -480,7 +480,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(-1.00, 0.00),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
@@ -564,9 +564,9 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           width: 2.0,
                         ),
                       ),
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Align(
-                        alignment: const AlignmentDirectional(0.00, 0.00),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController2,
                           focusNode: _model.textFieldFocusNode2,
@@ -679,7 +679,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(-1.00, 0.00),
+                    alignment: const AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
@@ -710,7 +710,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           width: 2.0,
                         ),
                       ),
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: TextFormField(
                         controller: _model.textController3,
                         focusNode: _model.textFieldFocusNode3,
@@ -827,7 +827,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Align(
-                    alignment: const AlignmentDirectional(0.00, 0.00),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Text(
                       'Post',
                       style: FlutterFlowTheme.of(context).titleLarge.override(

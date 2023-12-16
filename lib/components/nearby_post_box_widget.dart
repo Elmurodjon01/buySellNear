@@ -125,7 +125,7 @@ class _NearbyPostBoxWidgetState extends State<NearbyPostBoxWidget> {
                       borderRadius: BorderRadius.circular(2.0),
                     ),
                     child: Align(
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Text(
                         '걸어서 10분',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(

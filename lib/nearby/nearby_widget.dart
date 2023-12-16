@@ -72,7 +72,7 @@ class _NearbyWidgetState extends State<NearbyWidget> {
                   child: const NearbyCardWidget(),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.00, 0.00),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(10.0, 7.0, 0.0, 7.0),

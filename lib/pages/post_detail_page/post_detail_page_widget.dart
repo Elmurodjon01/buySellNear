@@ -86,7 +86,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
             body: SafeArea(
               top: true,
               child: Align(
-                alignment: const AlignmentDirectional(0.00, 0.00),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Stack(
                   children: [
                     Column(
@@ -157,7 +157,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.00, 1.00),
+                                              const AlignmentDirectional(0.0, 1.0),
                                           child: Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -545,7 +545,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
@@ -650,8 +650,8 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                             ],
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -692,7 +692,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                                   child: Align(
                                                     alignment:
                                                         const AlignmentDirectional(
-                                                            0.00, 0.00),
+                                                            0.0, 0.0),
                                                     child: Text(
                                                       'Chat',
                                                       style:

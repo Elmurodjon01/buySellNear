@@ -102,7 +102,7 @@ class _ShowImageWidgetState extends State<ShowImageWidget> {
                 return Stack(
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.00, 0.00),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -113,7 +113,7 @@ class _ShowImageWidgetState extends State<ShowImageWidget> {
                               color: FlutterFlowTheme.of(context).sub1,
                             ),
                             child: Align(
-                              alignment: const AlignmentDirectional(-0.90, -0.50),
+                              alignment: const AlignmentDirectional(-0.9, -0.5),
                               child: InkWell(
                                 splashColor: Colors.transparent,
                                 focusColor: Colors.transparent,
@@ -175,7 +175,7 @@ class _ShowImageWidgetState extends State<ShowImageWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.00, 1.00),
+                                            const AlignmentDirectional(0.0, 1.0),
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(

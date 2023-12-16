@@ -164,16 +164,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
               alignment: const AlignmentDirectional(0.0, 1.0),
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.00, 1.00),
+                  alignment: const AlignmentDirectional(0.0, 1.0),
                   child: Container(
                     width: double.infinity,
                     height: double.infinity,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                     ),
-                    alignment: const AlignmentDirectional(0.00, 1.00),
+                    alignment: const AlignmentDirectional(0.0, 1.0),
                     child: Align(
-                      alignment: const AlignmentDirectional(0.00, 1.00),
+                      alignment: const AlignmentDirectional(0.0, 1.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -185,7 +185,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                               Stack(
                                 children: [
                                   Align(
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(15.0),
                                       child: Image.asset(
@@ -202,7 +202,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                               animationsMap['rowOnPageLoadAnimation']!),
                           Expanded(
                             child: Align(
-                              alignment: const AlignmentDirectional(0.00, 1.00),
+                              alignment: const AlignmentDirectional(0.0, 1.0),
                               child: Container(
                                 width: double.infinity,
                                 constraints: const BoxConstraints(
@@ -758,12 +758,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0),
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
                                                               child:
                                                                   FlutterFlowIconButton(
                                                                 borderColor:
@@ -792,12 +788,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0),
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
                                                               child:
                                                                   FlutterFlowIconButton(
                                                                 borderColor:
@@ -826,12 +818,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0),
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
                                                               child:
                                                                   FlutterFlowIconButton(
                                                                 borderColor:
@@ -876,8 +864,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           Align(
                                                             alignment:
                                                                 const AlignmentDirectional(
-                                                                    -1.00,
-                                                                    0.00),
+                                                                    -1.0, 0.0),
                                                             child: Padding(
                                                               padding:
                                                                   const EdgeInsetsDirectional
@@ -925,8 +912,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 Align(
                                                                   alignment:
                                                                       const AlignmentDirectional(
-                                                                          -1.00,
-                                                                          0.00),
+                                                                          -1.0,
+                                                                          0.0),
                                                                   child:
                                                                       Padding(
                                                                     padding: const EdgeInsetsDirectional
@@ -1801,12 +1788,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0),
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
                                                               child:
                                                                   FlutterFlowIconButton(
                                                                 borderColor:
@@ -1835,12 +1818,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0),
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
                                                               child:
                                                                   FlutterFlowIconButton(
                                                                 borderColor:
@@ -1869,12 +1848,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0,
-                                                                          8.0),
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
                                                               child:
                                                                   FlutterFlowIconButton(
                                                                 borderColor:

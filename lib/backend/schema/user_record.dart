@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 
@@ -55,6 +54,16 @@ class UserRecord extends FirestoreRecord {
   DateTime? get createdTime => _createdTime;
   bool hasCreatedTime() => _createdTime != null;
 
+  // "studyRef" field.
+  List<EndData2Struct>? _studyRef;
+  List<EndData2Struct> get studyRef => _studyRef ?? const [];
+  bool hasStudyRef() => _studyRef != null;
+
+  // "userInfo" field.
+  ListeningJourneyStruct? _userInfo;
+  ListeningJourneyStruct get userInfo => _userInfo ?? ListeningJourneyStruct();
+  bool hasUserInfo() => _userInfo != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -64,6 +73,11 @@ class UserRecord extends FirestoreRecord {
     _joinCampain = getDataList(snapshotData['Join_campain']);
     _likeCampain = getDataList(snapshotData['like_campain']);
     _createdTime = snapshotData['created_time'] as DateTime?;
+    _studyRef = getStructList(
+      snapshotData['studyRef'],
+      EndData2Struct.fromMap,
+    );
+    _userInfo = ListeningJourneyStruct.maybeFromMap(snapshotData['userInfo']);
   }
 
   static CollectionReference get collection =>
@@ -106,6 +120,7 @@ Map<String, dynamic> createUserRecordData({
   String? uid,
   String? phoneNumber,
   DateTime? createdTime,
+  ListeningJourneyStruct? userInfo,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -115,8 +130,12 @@ Map<String, dynamic> createUserRecordData({
       'uid': uid,
       'phone_number': phoneNumber,
       'created_time': createdTime,
+      'userInfo': ListeningJourneyStruct().toMap(),
     }.withoutNulls,
   );
+
+  // Handle nested data for "userInfo" field.
+  addListeningJourneyStructData(firestoreData, userInfo, 'userInfo');
 
   return firestoreData;
 }
@@ -134,7 +153,9 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e1?.phoneNumber == e2?.phoneNumber &&
         listEquality.equals(e1?.joinCampain, e2?.joinCampain) &&
         listEquality.equals(e1?.likeCampain, e2?.likeCampain) &&
-        e1?.createdTime == e2?.createdTime;
+        e1?.createdTime == e2?.createdTime &&
+        listEquality.equals(e1?.studyRef, e2?.studyRef) &&
+        e1?.userInfo == e2?.userInfo;
   }
 
   @override
@@ -146,7 +167,9 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.phoneNumber,
         e?.joinCampain,
         e?.likeCampain,
-        e?.createdTime
+        e?.createdTime,
+        e?.studyRef,
+        e?.userInfo
       ]);
 
   @override
