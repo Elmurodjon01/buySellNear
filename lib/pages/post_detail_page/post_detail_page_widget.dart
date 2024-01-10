@@ -602,8 +602,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                postDetailPagePostRecord.price
-                                                    .toString(),
+                                                '${postDetailPagePostRecord.price.toString()}원',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .headlineSmall

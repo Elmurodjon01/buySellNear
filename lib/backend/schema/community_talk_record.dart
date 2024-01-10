@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import '/backend/schema/util/firestore_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class CommunityTalkRecord extends FirestoreRecord {
   CommunityTalkRecord._(
@@ -49,11 +50,6 @@ class CommunityTalkRecord extends FirestoreRecord {
   LatLng? get address => _address;
   bool hasAddress() => _address != null;
 
-  // "uploadImage" field.
-  String? _uploadImage;
-  String get uploadImage => _uploadImage ?? '';
-  bool hasUploadImage() => _uploadImage != null;
-
   // "uploadUser" field.
   DocumentReference? _uploadUser;
   DocumentReference? get uploadUser => _uploadUser;
@@ -64,6 +60,11 @@ class CommunityTalkRecord extends FirestoreRecord {
   List<DocumentReference> get commentCount => _commentCount ?? const [];
   bool hasCommentCount() => _commentCount != null;
 
+  // "uploadedImages" field.
+  List<String>? _uploadedImages;
+  List<String> get uploadedImages => _uploadedImages ?? const [];
+  bool hasUploadedImages() => _uploadedImages != null;
+
   void _initializeFields() {
     _category = snapshotData['category'] as String?;
     _content = snapshotData['content'] as String?;
@@ -72,9 +73,9 @@ class CommunityTalkRecord extends FirestoreRecord {
     _title = snapshotData['title'] as String?;
     _uploadTime = snapshotData['uploadTime'] as DateTime?;
     _address = snapshotData['address'] as LatLng?;
-    _uploadImage = snapshotData['uploadImage'] as String?;
     _uploadUser = snapshotData['uploadUser'] as DocumentReference?;
     _commentCount = getDataList(snapshotData['commentCount']);
+    _uploadedImages = getDataList(snapshotData['uploadedImages']);
   }
 
   static CollectionReference get collection =>
@@ -118,7 +119,6 @@ Map<String, dynamic> createCommunityTalkRecordData({
   String? title,
   DateTime? uploadTime,
   LatLng? address,
-  String? uploadImage,
   DocumentReference? uploadUser,
 }) {
   final firestoreData = mapToFirestore(
@@ -129,7 +129,6 @@ Map<String, dynamic> createCommunityTalkRecordData({
       'title': title,
       'uploadTime': uploadTime,
       'address': address,
-      'uploadImage': uploadImage,
       'uploadUser': uploadUser,
     }.withoutNulls,
   );
@@ -151,9 +150,9 @@ class CommunityTalkRecordDocumentEquality
         e1?.title == e2?.title &&
         e1?.uploadTime == e2?.uploadTime &&
         e1?.address == e2?.address &&
-        e1?.uploadImage == e2?.uploadImage &&
         e1?.uploadUser == e2?.uploadUser &&
-        listEquality.equals(e1?.commentCount, e2?.commentCount);
+        listEquality.equals(e1?.commentCount, e2?.commentCount) &&
+        listEquality.equals(e1?.uploadedImages, e2?.uploadedImages);
   }
 
   @override
@@ -165,9 +164,9 @@ class CommunityTalkRecordDocumentEquality
         e?.title,
         e?.uploadTime,
         e?.address,
-        e?.uploadImage,
         e?.uploadUser,
-        e?.commentCount
+        e?.commentCount,
+        e?.uploadedImages
       ]);
 
   @override

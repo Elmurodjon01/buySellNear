@@ -14,6 +14,7 @@ import 'schema/chats_record.dart';
 import 'schema/chat_messages_record.dart';
 import 'schema/community_talk_record.dart';
 import 'schema/user_credentials_record.dart';
+import 'schema/advertisements_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,6 +31,7 @@ export 'schema/chats_record.dart';
 export 'schema/chat_messages_record.dart';
 export 'schema/community_talk_record.dart';
 export 'schema/user_credentials_record.dart';
+export 'schema/advertisements_record.dart';
 
 /// Functions to query UserRecords (as a Stream and as a Future).
 Future<int> queryUserRecordCount({
@@ -359,6 +361,43 @@ Future<List<UserCredentialsRecord>> queryUserCredentialsRecordOnce({
     queryCollectionOnce(
       UserCredentialsRecord.collection,
       UserCredentialsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AdvertisementsRecords (as a Stream and as a Future).
+Future<int> queryAdvertisementsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AdvertisementsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AdvertisementsRecord>> queryAdvertisementsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AdvertisementsRecord.collection,
+      AdvertisementsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AdvertisementsRecord>> queryAdvertisementsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AdvertisementsRecord.collection,
+      AdvertisementsRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

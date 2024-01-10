@@ -120,17 +120,20 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(77.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(95.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        'New Listing ',
-                        style: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).titleSmallFamily,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleSmallFamily),
-                            ),
+                        '거래를 시작하세요',
+                        textAlign: TextAlign.center,
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  color: FlutterFlowTheme.of(context).sub1,
+                                  fontWeight: FontWeight.w600,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleMediumFamily),
+                                ),
                       ),
                     ),
                   ),
@@ -138,7 +141,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -612,7 +615,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 10.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 1.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -755,7 +758,7 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 8.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,

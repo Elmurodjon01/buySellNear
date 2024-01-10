@@ -149,11 +149,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'CUploadPage',
-          path: '/cUploadPage',
-          builder: (context, params) => const CUploadPageWidget(),
-        ),
-        FFRoute(
           name: 'editProfile',
           path: '/editProfile',
           builder: (context, params) => const EditProfileWidget(),
@@ -171,13 +166,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'Nearby')
               : const NearbyWidget(),
-        ),
-        FFRoute(
-          name: 'nearbyDetailPage',
-          path: '/nearbyDetailPage',
-          builder: (context, params) => NearbyDetailPageWidget(
-            title: params.getParam('title', ParamType.String),
-          ),
         ),
         FFRoute(
           name: 'FAQspage',
@@ -224,6 +212,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'sample')
               : const SampleWidget(),
+        ),
+        FFRoute(
+          name: 'showImageCopy',
+          path: '/showImageCommunity',
+          builder: (context, params) => ShowImageCopyWidget(
+            postDocument: params.getParam('postDocument',
+                ParamType.DocumentReference, false, ['communityTalk']),
+          ),
+        ),
+        FFRoute(
+          name: 'uploadAd',
+          path: '/uploadAd',
+          builder: (context, params) => const UploadAdWidget(),
+        ),
+        FFRoute(
+          name: 'adDetailPage',
+          path: '/adDetailPage',
+          builder: (context, params) => AdDetailPageWidget(
+            adReference: params.getParam('adReference',
+                ParamType.DocumentReference, false, ['advertisements']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -106,22 +106,31 @@ class _CreatePopUpWidgetState extends State<CreatePopUpWidget> {
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.appleAlt,
-                          color: FlutterFlowTheme.of(context).sub1,
-                          size: 24.0,
-                        ),
-                        Text(
-                          '농수산물',
-                          style: FlutterFlowTheme.of(context).labelMedium,
-                        ),
-                      ]
-                          .divide(const SizedBox(width: 10.0))
-                          .addToStart(const SizedBox(width: 20.0)),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        context.pushNamed('uploadPost');
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.handsHelping,
+                            color: FlutterFlowTheme.of(context).sub1,
+                            size: 24.0,
+                          ),
+                          Text(
+                            '동네 거래',
+                            style: FlutterFlowTheme.of(context).labelMedium,
+                          ),
+                        ]
+                            .divide(const SizedBox(width: 10.0))
+                            .addToStart(const SizedBox(width: 20.0)),
+                      ),
                     ),
                   ),
                   Padding(

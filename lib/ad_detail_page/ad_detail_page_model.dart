@@ -1,17 +1,20 @@
-import '/components/custom_appbar_widget.dart';
-import '/components/nearby_card_widget.dart';
+import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'nearby_widget.dart' show NearbyWidget;
+import 'ad_detail_page_widget.dart' show AdDetailPageWidget;
 import 'package:flutter/material.dart';
 
-class NearbyModel extends FlutterFlowModel<NearbyWidget> {
+class AdDetailPageModel extends FlutterFlowModel<AdDetailPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for customAppbar component.
-  late CustomAppbarModel customAppbarModel;
-  // Model for nearbyCard component.
-  late NearbyCardModel nearbyCardModel;
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
+  // State field(s) for GoogleMap widget.
+  LatLng? googleMapsCenter;
+  final googleMapsController = Completer<GoogleMapController>();
   // State field(s) for PageView widget.
   PageController? pageViewController;
 
@@ -20,20 +23,18 @@ class NearbyModel extends FlutterFlowModel<NearbyWidget> {
           pageViewController!.page != null
       ? pageViewController!.page!.round()
       : 0;
+  // State field(s) for RatingBar widget.
+  double? ratingBarValue;
 
   /// Initialization and disposal methods.
 
   @override
-  void initState(BuildContext context) {
-    customAppbarModel = createModel(context, () => CustomAppbarModel());
-    nearbyCardModel = createModel(context, () => NearbyCardModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    customAppbarModel.dispose();
-    nearbyCardModel.dispose();
+    tabBarController?.dispose();
   }
 
   /// Action blocks are added here.

@@ -90,16 +90,18 @@ class _AccountWidgetState extends State<AccountWidget> {
                                 children: [
                                   Align(
                                     alignment: const AlignmentDirectional(0.0, 0.0),
-                                    child: Container(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://picsum.photos/seed/573/600',
-                                        fit: BoxFit.cover,
+                                    child: AuthUserStreamWidget(
+                                      builder: (context) => Container(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        clipBehavior: Clip.antiAlias,
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Image.network(
+                                          currentUserPhoto,
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -119,11 +121,13 @@ class _AccountWidgetState extends State<AccountWidget> {
                                       child: Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 16.0, 0.0, 12.0),
-                                        child: Text(
-                                          'David',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge,
+                                        child: AuthUserStreamWidget(
+                                          builder: (context) => Text(
+                                            currentUserDisplayName,
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleLarge,
+                                          ),
                                         ),
                                       ),
                                     ),

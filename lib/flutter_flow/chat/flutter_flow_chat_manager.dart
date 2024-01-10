@@ -77,7 +77,9 @@ class FFChatManager {
   static FFChatManager get instance => _instance ??= FFChatManager._();
 
   Stream<List<ChatMessagesRecord>> getChatMessages(
-      DocumentReference chatReference) {
+    DocumentReference chatReference, {
+    int? limit,
+  }) {
     final chatId = chatReference.id;
     if (!_chatMessages.containsKey(chatId) &&
         _chatMessages.length >= kMaxChatCacheSize) {
@@ -89,7 +91,7 @@ class FFChatManager {
             'timestamp',
             descending: true,
           ),
-      limit: 30,
+      limit: limit ?? 30,
     );
     return _chatMessages[chatId]!;
   }

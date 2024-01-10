@@ -20,6 +20,7 @@ class FFChatPage extends StatefulWidget {
     this.inputHintTextStyle,
     this.inputTextStyle,
     this.emptyChatWidget,
+    this.maxLoadedMessages,
   });
 
   final FFChatInfo chatInfo;
@@ -34,6 +35,7 @@ class FFChatPage extends StatefulWidget {
   final TextStyle? inputHintTextStyle;
   final TextStyle? inputTextStyle;
   final Widget? emptyChatWidget;
+  final int? maxLoadedMessages;
 
   @override
   _FFChatPageState createState() => _FFChatPageState();
@@ -88,7 +90,9 @@ class _FFChatPageState extends State<FFChatPage> {
 
   StreamSubscription<List<ChatMessagesRecord>> getMessagesStream(
           DocumentReference chatReference) =>
-      FFChatManager.instance.getChatMessages(chatReference).listen((m) {
+      FFChatManager.instance
+          .getChatMessages(chatReference, limit: widget.maxLoadedMessages)
+          .listen((m) {
         if (mounted) {
           updateMessages(m);
           FFChatManager.instance.setLatestMessages(chatReference, messages);

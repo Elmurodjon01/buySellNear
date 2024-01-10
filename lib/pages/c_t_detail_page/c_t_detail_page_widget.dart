@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -115,16 +116,33 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                     ),
                                     child: Stack(
                                       children: [
-                                        Image.network(
-                                          cTDetailPageCommunityTalkRecord
-                                              .uploadImage,
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          height: MediaQuery.sizeOf(context)
-                                                  .height *
-                                              1.0,
-                                          fit: BoxFit.cover,
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'showImageCopy',
+                                              queryParameters: {
+                                                'postDocument': serializeParam(
+                                                  widget.communityTalkRef,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          child: Image.network(
+                                            cTDetailPageCommunityTalkRecord
+                                                .uploadedImages.first,
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                         Align(
                                           alignment:
@@ -325,8 +343,12 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                                             ),
                                                             child:
                                                                 Image.network(
-                                                              containerUserRecord
-                                                                  .photoUrl,
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                containerUserRecord
+                                                                    .photoUrl,
+                                                                'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                                                              ),
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),
@@ -340,24 +362,10 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                                                         0.0),
                                                             child: Text(
                                                               containerUserRecord
-                                                                  .displayName,
+                                                                  .email,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                  ),
+                                                                  .labelLarge,
                                                             ),
                                                           ),
                                                         ],
@@ -366,31 +374,37 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                                   );
                                                 },
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 0.0),
-                                                child: Text(
-                                                  cTDetailPageCommunityTalkRecord
-                                                      .content,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
+                                              Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.95,
+                                                decoration: const BoxDecoration(),
+                                                child: Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 12.0, 0.0, 0.0),
+                                                  child: AutoSizeText(
+                                                    cTDetailPageCommunityTalkRecord
+                                                        .content,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMediumFamily,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily),
+                                                        ),
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -640,7 +654,7 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                                                               MainAxisAlignment.spaceBetween,
                                                                           children: [
                                                                             Text(
-                                                                              rowUserRecord.displayName,
+                                                                              rowUserRecord.email,
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                                     fontWeight: FontWeight.w600,
@@ -815,7 +829,6 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                 child: TextFormField(
                                   controller: _model.textController,
                                   focusNode: _model.textFieldFocusNode,
-                                  autofocus: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Leave a comment ',

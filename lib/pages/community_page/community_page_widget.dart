@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -183,9 +185,13 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                           width: 120.0,
                                                           height: 40.0,
                                                           decoration:
-                                                              const BoxDecoration(
-                                                            color: Color(
+                                                              BoxDecoration(
+                                                            color: const Color(
                                                                 0xFFD8D5D5),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        3.0),
                                                           ),
                                                           child: Align(
                                                             alignment:
@@ -216,7 +222,19 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                                 .title,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .labelMedium,
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  fontSize:
+                                                                      16.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
                                                           ),
                                                         ),
                                                       ],
@@ -224,122 +242,173 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                     Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
+                                                        Container(
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  0.65,
+                                                          height:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .height *
+                                                                  0.02,
+                                                          decoration:
+                                                              const BoxDecoration(),
+                                                          child: Visibility(
+                                                            visible:
+                                                                responsiveVisibility(
+                                                              context: context,
+                                                              tablet: false,
+                                                              tabletLandscape:
+                                                                  false,
+                                                              desktop: false,
+                                                            ),
+                                                            child: AutoSizeText(
+                                                              'desc of the post that user has uploaded',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .accent2,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
                                                         Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
+                                                                      8.0,
                                                                       0.0,
-                                                                      0.0,
-                                                                      10.0),
-                                                          child: Text(
-                                                            dateTimeFormat(
-                                                                'jm',
-                                                                listViewCommunityTalkRecord
-                                                                    .uploadTime!),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLarge
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily,
-                                                                  color: const Color(
-                                                                      0xFF8A8888),
-                                                                  fontSize:
-                                                                      11.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyLargeFamily),
+                                                                      0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              if (responsiveVisibility(
+                                                                context:
+                                                                    context,
+                                                                tablet: false,
+                                                                tabletLandscape:
+                                                                    false,
+                                                                desktop: false,
+                                                              ))
+                                                                Align(
+                                                                  alignment:
+                                                                      const AlignmentDirectional(
+                                                                          -1.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    random_data
+                                                                        .randomName(
+                                                                            true,
+                                                                            false),
+                                                                    style:
+                                                                        const TextStyle(
+                                                                      color: Color(
+                                                                          0xFF797979),
+                                                                      fontSize:
+                                                                          13.0,
+                                                                    ),
+                                                                  ),
                                                                 ),
+                                                              SizedBox(
+                                                                height: 15.0,
+                                                                child:
+                                                                    VerticalDivider(
+                                                                  thickness:
+                                                                      1.0,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2,
+                                                                ),
+                                                              ),
+                                                              if (responsiveVisibility(
+                                                                context:
+                                                                    context,
+                                                                tablet: false,
+                                                                tabletLandscape:
+                                                                    false,
+                                                                desktop: false,
+                                                              ))
+                                                                Text(
+                                                                  dateTimeFormat(
+                                                                      'M/d H:mm',
+                                                                      listViewCommunityTalkRecord
+                                                                          .uploadTime!),
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    color: Color(
+                                                                        0xFF797979),
+                                                                    fontSize:
+                                                                        13.0,
+                                                                  ),
+                                                                ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ],
                                                 ),
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15.0),
-                                                      child: Image.network(
-                                                        listViewCommunityTalkRecord
-                                                            .uploadImage,
-                                                        width: 75.0,
-                                                        height: 75.0,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                    Row(
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 10.0,
+                                                                0.0, 0.0),
+                                                    child: Column(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
-                                                              .spaceBetween,
+                                                              .start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
                                                       children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      5.0,
-                                                                      0.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              ToggleIcon(
-                                                                onPressed:
-                                                                    () async {
-                                                                  setState(() => FFAppState()
-                                                                          .likeToggle =
-                                                                      !FFAppState()
-                                                                          .likeToggle);
-                                                                },
-                                                                value: FFAppState()
-                                                                    .likeToggle,
-                                                                onIcon: Icon(
-                                                                  Icons
-                                                                      .favorite_sharp,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                  size: 18.0,
-                                                                ),
-                                                                offIcon: Icon(
-                                                                  Icons
-                                                                      .favorite_border,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  size: 18.0,
-                                                                ),
-                                                              ),
-                                                              Text(
-                                                                listViewCommunityTalkRecord
-                                                                    .like
-                                                                    .toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium,
-                                                              ),
-                                                            ],
+                                                        ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          child: Image.network(
+                                                            listViewCommunityTalkRecord
+                                                                .uploadedImages
+                                                                .first,
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                0.2,
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                0.08,
+                                                            fit: BoxFit.cover,
                                                           ),
                                                         ),
                                                         Row(
@@ -347,36 +416,114 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                               MainAxisSize.max,
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .spaceEvenly,
+                                                                  .spaceBetween,
                                                           children: [
-                                                            FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .comment,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 18.0,
-                                                            ),
                                                             Padding(
                                                               padding:
                                                                   const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0,
+                                                                          0.0),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  ToggleIcon(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      setState(() => FFAppState()
+                                                                              .likeToggle =
+                                                                          !FFAppState()
+                                                                              .likeToggle);
+                                                                    },
+                                                                    value: FFAppState()
+                                                                        .likeToggle,
+                                                                    onIcon:
+                                                                        Icon(
+                                                                      Icons
+                                                                          .favorite_sharp,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      size:
+                                                                          18.0,
+                                                                    ),
+                                                                    offIcon:
+                                                                        Icon(
+                                                                      Icons
+                                                                          .favorite_border,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      size:
+                                                                          18.0,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    listViewCommunityTalkRecord
+                                                                        .like
+                                                                        .toString(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child: FaIcon(
+                                                                    FontAwesomeIcons
+                                                                        .comment,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 18.0,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           3.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
-                                                              child: Text(
-                                                                '3',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium,
-                                                              ),
+                                                                  child: Text(
+                                                                    listViewCommunityTalkRecord
+                                                                        .commentCount
+                                                                        .length
+                                                                        .toString(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ],
                                                         ),
                                                       ],
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -406,7 +553,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                   borderRadius: 27.5,
                   borderWidth: 1.0,
                   buttonSize: 55.0,
-                  fillColor: FlutterFlowTheme.of(context).main2,
+                  fillColor: const Color(0xFFE15A19),
                   icon: Icon(
                     Icons.add,
                     color: FlutterFlowTheme.of(context).primaryText,

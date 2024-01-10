@@ -4,6 +4,7 @@ import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -258,12 +259,49 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                               .bodyMedium,
                                                     ),
                                                   ),
-                                                  Text(
-                                                    listViewPostRecord.like
-                                                        .toString(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
+                                                  Container(
+                                                    width: 55.0,
+                                                    decoration: const BoxDecoration(),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          listViewPostRecord
+                                                              .like
+                                                              .toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                        ToggleIcon(
+                                                          onPressed: () async {
+                                                            setState(() => FFAppState()
+                                                                    .likeToggle =
+                                                                !FFAppState()
+                                                                    .likeToggle);
+                                                          },
+                                                          value: FFAppState()
+                                                              .likeToggle,
+                                                          onIcon: Icon(
+                                                            Icons
+                                                                .favorite_border,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            size: 18.0,
+                                                          ),
+                                                          offIcon: Icon(
+                                                            Icons
+                                                                .favorite_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 18.0,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -271,9 +309,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                           ],
                                         ),
                                       ),
-                                      const Divider(
+                                      Divider(
                                         thickness: 1.0,
-                                        color: Color(0xFFE0DCDC),
+                                        color: FlutterFlowTheme.of(context)
+                                            .accent2,
                                       ),
                                     ],
                                   ),
@@ -301,7 +340,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                     borderRadius: 27.5,
                     borderWidth: 1.0,
                     buttonSize: 55.0,
-                    fillColor: FlutterFlowTheme.of(context).main2,
+                    fillColor: const Color(0xFFE15A19),
                     icon: Icon(
                       Icons.add,
                       color: FlutterFlowTheme.of(context).primaryText,

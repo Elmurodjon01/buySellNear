@@ -99,7 +99,7 @@ class EndData2Struct extends FFFirebaseStruct {
       );
 
   static EndData2Struct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? EndData2Struct.fromMap(data) : null;
+      data is Map ? EndData2Struct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'startTime': _startTime,

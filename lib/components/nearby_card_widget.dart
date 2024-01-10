@@ -66,16 +66,6 @@ class _NearbyCardWidgetState extends State<NearbyCardWidget> {
                   FFAppState().update(() {
                     FFAppState().pageIndex = 0;
                   });
-
-                  context.pushNamed(
-                    'nearbyDetailPage',
-                    queryParameters: {
-                      'title': serializeParam(
-                        '알바',
-                        ParamType.String,
-                      ),
-                    }.withoutNulls,
-                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -126,16 +116,6 @@ class _NearbyCardWidgetState extends State<NearbyCardWidget> {
                   _model.updatePage(() {
                     FFAppState().pageIndex = 1;
                   });
-
-                  context.pushNamed(
-                    'nearbyDetailPage',
-                    queryParameters: {
-                      'title': serializeParam(
-                        '중고자 직거래',
-                        ParamType.String,
-                      ),
-                    }.withoutNulls,
-                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -178,16 +158,6 @@ class _NearbyCardWidgetState extends State<NearbyCardWidget> {
                   _model.updatePage(() {
                     FFAppState().pageIndex = 2;
                   });
-
-                  context.pushNamed(
-                    'nearbyDetailPage',
-                    queryParameters: {
-                      'title': serializeParam(
-                        '부동산 직거래',
-                        ParamType.String,
-                      ),
-                    }.withoutNulls,
-                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -229,16 +199,6 @@ class _NearbyCardWidgetState extends State<NearbyCardWidget> {
                   _model.updatePage(() {
                     FFAppState().pageIndex = 3;
                   });
-
-                  context.pushNamed(
-                    'nearbyDetailPage',
-                    queryParameters: {
-                      'title': serializeParam(
-                        '음식점',
-                        ParamType.String,
-                      ),
-                    }.withoutNulls,
-                  );
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.max,

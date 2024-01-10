@@ -1,11 +1,19 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'nearby_detail_page_widget.dart' show NearbyDetailPageWidget;
+import 'show_image_copy_widget.dart' show ShowImageCopyWidget;
 import 'package:flutter/material.dart';
 
-class NearbyDetailPageModel extends FlutterFlowModel<NearbyDetailPageWidget> {
+class ShowImageCopyModel extends FlutterFlowModel<ShowImageCopyWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for PageView widget.
+  PageController? pageViewController;
+
+  int get pageViewCurrentIndex => pageViewController != null &&
+          pageViewController!.hasClients &&
+          pageViewController!.page != null
+      ? pageViewController!.page!.round()
+      : 0;
 
   /// Initialization and disposal methods.
 

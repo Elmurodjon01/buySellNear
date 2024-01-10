@@ -1,5 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/sign_up_fail_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -249,6 +251,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                               ],
                                               controller:
                                                   _model.tabBarController,
+                                              onTap: (i) async {
+                                                [() async {}, () async {}][i]();
+                                              },
                                             ),
                                           ),
                                           Expanded(
@@ -1652,45 +1657,116 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
-                                                            GoRouter.of(context)
-                                                                .prepareAuthEvent();
-                                                            if (_model
-                                                                    .signpassController
-                                                                    .text !=
-                                                                _model
-                                                                    .signpassCheckController
-                                                                    .text) {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                const SnackBar(
-                                                                  content: Text(
-                                                                    'Passwords don\'t match!',
+                                                            Function()
+                                                                navigate =
+                                                                () {};
+                                                            if ((_model.signemailaddController.text != '') &&
+                                                                (_model.signnameController
+                                                                            .text !=
+                                                                        '') &&
+                                                                (_model.signpassController
+                                                                            .text !=
+                                                                        '')) {
+                                                              GoRouter.of(
+                                                                      context)
+                                                                  .prepareAuthEvent();
+                                                              if (_model
+                                                                      .signpassController
+                                                                      .text !=
+                                                                  _model
+                                                                      .signpassCheckController
+                                                                      .text) {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  const SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Passwords don\'t match!',
+                                                                    ),
                                                                   ),
-                                                                ),
+                                                                );
+                                                                return;
+                                                              }
+
+                                                              final user =
+                                                                  await authManager
+                                                                      .createAccountWithEmail(
+                                                                context,
+                                                                _model
+                                                                    .signemailaddController
+                                                                    .text,
+                                                                _model
+                                                                    .signpassController
+                                                                    .text,
                                                               );
-                                                              return;
+                                                              if (user ==
+                                                                  null) {
+                                                                return;
+                                                              }
+
+                                                              await UserRecord
+                                                                  .collection
+                                                                  .doc(user.uid)
+                                                                  .update(
+                                                                      createUserRecordData(
+                                                                    email: _model
+                                                                        .signemailaddController
+                                                                        .text,
+                                                                    displayName:
+                                                                        _model
+                                                                            .signnameController
+                                                                            .text,
+                                                                    photoUrl: _model
+                                                                        .uploadedFileUrl,
+                                                                    createdTime:
+                                                                        getCurrentTimestamp,
+                                                                  ));
+
+                                                              navigate = () =>
+                                                                  context.goNamedAuth(
+                                                                      'HomePage',
+                                                                      context
+                                                                          .mounted);
+                                                            } else {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    const Color(
+                                                                        0x39000000),
+                                                                barrierColor: const Color(
+                                                                    0x2B000000),
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return GestureDetector(
+                                                                    onTap: () => _model
+                                                                            .unfocusNode
+                                                                            .canRequestFocus
+                                                                        ? FocusScope.of(context).requestFocus(_model
+                                                                            .unfocusNode)
+                                                                        : FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          const SignUpFailPopUpWidget(),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(
+                                                                      () {}));
                                                             }
 
-                                                            final user =
-                                                                await authManager
-                                                                    .createAccountWithEmail(
-                                                              context,
-                                                              _model
-                                                                  .signemailaddController
-                                                                  .text,
-                                                              _model
-                                                                  .signpassController
-                                                                  .text,
-                                                            );
-                                                            if (user == null) {
-                                                              return;
-                                                            }
-
-                                                            context.goNamedAuth(
-                                                                'HomePage',
-                                                                context
-                                                                    .mounted);
+                                                            navigate();
                                                           },
                                                           text: '회원가입',
                                                           options:
@@ -1739,7 +1815,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        50.0),
+                                                                        10.0),
                                                           ),
                                                         ),
                                                       ),

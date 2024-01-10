@@ -72,10 +72,9 @@ class ListeningJourneyStruct extends FFFirebaseStruct {
         userName: data['userName'] as String?,
       );
 
-  static ListeningJourneyStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic>
-          ? ListeningJourneyStruct.fromMap(data)
-          : null;
+  static ListeningJourneyStruct? maybeFromMap(dynamic data) => data is Map
+      ? ListeningJourneyStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'startTime': _startTime,
