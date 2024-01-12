@@ -1,10 +1,11 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'profile_image_pop_widget.dart' show ProfileImagePopWidget;
+import 'profile_image_page_widget.dart' show ProfileImagePageWidget;
 import 'package:flutter/material.dart';
 
-class ProfileImagePopModel extends FlutterFlowModel<ProfileImagePopWidget> {
-  ///  State fields for stateful widgets in this component.
+class ProfileImagePageModel extends FlutterFlowModel<ProfileImagePageWidget> {
+  ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -16,7 +17,9 @@ class ProfileImagePopModel extends FlutterFlowModel<ProfileImagePopWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {}
+  void dispose() {
+    unfocusNode.dispose();
+  }
 
   /// Action blocks are added here.
 

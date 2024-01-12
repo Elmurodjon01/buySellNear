@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/profile_image_pop_widget.dart';
 import '/components/sign_up_fail_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -1536,9 +1535,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
-                                                            Function()
-                                                                navigate =
-                                                                () {};
                                                             if ((_model.signemailaddController.text != '') &&
                                                                 (_model.signnameController
                                                                             .text !=
@@ -1602,44 +1598,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                             .text,
                                                                   ));
 
-                                                              navigate = () =>
-                                                                  context.goNamedAuth(
-                                                                      'HomePage',
-                                                                      context
-                                                                          .mounted);
-                                                              await showModalBottomSheet(
-                                                                isScrollControlled:
-                                                                    true,
-                                                                backgroundColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                enableDrag:
-                                                                    false,
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (context) {
-                                                                  return GestureDetector(
-                                                                    onTap: () => _model
-                                                                            .unfocusNode
-                                                                            .canRequestFocus
-                                                                        ? FocusScope.of(context).requestFocus(_model
-                                                                            .unfocusNode)
-                                                                        : FocusScope.of(context)
-                                                                            .unfocus(),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: MediaQuery
-                                                                          .viewInsetsOf(
-                                                                              context),
-                                                                      child:
-                                                                          const ProfileImagePopWidget(),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  safeSetState(
-                                                                      () {}));
+                                                              context.pushNamedAuth(
+                                                                  'profileImagePage',
+                                                                  context
+                                                                      .mounted);
                                                             } else {
                                                               await showModalBottomSheet(
                                                                 isScrollControlled:
@@ -1677,8 +1639,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   safeSetState(
                                                                       () {}));
                                                             }
-
-                                                            navigate();
                                                           },
                                                           text: '회원가입',
                                                           options:

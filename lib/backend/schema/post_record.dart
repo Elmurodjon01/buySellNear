@@ -81,8 +81,8 @@ class PostRecord extends FirestoreRecord {
   bool hasNegoitable() => _negoitable != null;
 
   // "meetLocation" field.
-  LatLng? _meetLocation;
-  LatLng? get meetLocation => _meetLocation;
+  String? _meetLocation;
+  String get meetLocation => _meetLocation ?? '';
   bool hasMeetLocation() => _meetLocation != null;
 
   void _initializeFields() {
@@ -99,7 +99,7 @@ class PostRecord extends FirestoreRecord {
     _location = snapshotData['location'] as String?;
     _forSale = snapshotData['forSale'] as bool?;
     _negoitable = snapshotData['negoitable'] as bool?;
-    _meetLocation = snapshotData['meetLocation'] as LatLng?;
+    _meetLocation = snapshotData['meetLocation'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -146,7 +146,7 @@ Map<String, dynamic> createPostRecordData({
   String? location,
   bool? forSale,
   bool? negoitable,
-  LatLng? meetLocation,
+  String? meetLocation,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{

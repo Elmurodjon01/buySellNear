@@ -1,64 +1,100 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'profile_image_pop_model.dart';
-export 'profile_image_pop_model.dart';
+import 'profile_image_page_model.dart';
+export 'profile_image_page_model.dart';
 
-class ProfileImagePopWidget extends StatefulWidget {
-  const ProfileImagePopWidget({super.key});
+class ProfileImagePageWidget extends StatefulWidget {
+  const ProfileImagePageWidget({super.key});
 
   @override
-  _ProfileImagePopWidgetState createState() => _ProfileImagePopWidgetState();
+  _ProfileImagePageWidgetState createState() => _ProfileImagePageWidgetState();
 }
 
-class _ProfileImagePopWidgetState extends State<ProfileImagePopWidget> {
-  late ProfileImagePopModel _model;
+class _ProfileImagePageWidgetState extends State<ProfileImagePageWidget> {
+  late ProfileImagePageModel _model;
 
-  @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProfileImagePopModel());
+    _model = createModel(context, () => ProfileImagePageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.maybeDispose();
+    _model.dispose();
 
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
-    return Align(
-      alignment: const AlignmentDirectional(0.0, 0.0),
-      child: Container(
-        width: MediaQuery.sizeOf(context).width * 0.8,
-        height: MediaQuery.sizeOf(context).height * 0.6,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).primaryBackground,
+    return GestureDetector(
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFFF6E10),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: const Icon(
+              Icons.arrow_back_ios_outlined,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            '프로필 사진을 업로드하세요',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
+                  color: Colors.white,
+                  fontSize: 22.0,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).headlineMediumFamily),
+                ),
+          ),
+          actions: const [],
+          centerTitle: true,
+          elevation: 2.0,
         ),
-        alignment: const AlignmentDirectional(0.0, 0.0),
-        child: Column(
+        body: Column(
           mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 16.0),
@@ -199,23 +235,23 @@ class _ProfileImagePopWidgetState extends State<ProfileImagePopWidget> {
             Align(
               alignment: const AlignmentDirectional(-0.02, 0.9),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 220.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     await currentUserReference!.update(createUserRecordData(
                       photoUrl: _model.uploadedFileUrl,
                     ));
 
-                    context.pushNamed('HomePage');
+                    context.pushNamed('userLocationPage');
                   },
-                  text: 'Save Image',
+                  text: '사진 업로드',
                   options: FFButtonOptions(
-                    width: 270.0,
-                    height: 50.0,
+                    width: 150.0,
+                    height: 40.0,
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).main1,
+                    color: const Color(0xFFFF6E10),
                     textStyle: FlutterFlowTheme.of(context)
                         .titleMedium
                         .override(

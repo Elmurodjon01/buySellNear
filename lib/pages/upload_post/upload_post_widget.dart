@@ -218,7 +218,10 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Select',
+                                valueOrDefault<String>(
+                                  widget.location?.toString(),
+                                  '52.792377734908946, 104.77157243957207',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -781,7 +784,6 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                         location: 'Andijan',
                         forSale: _model.choiceChipsValue == 'Free',
                         negoitable: _model.checkboxValue,
-                        meetLocation: widget.location,
                       ),
                       ...mapToFirestore(
                         {

@@ -64,6 +64,11 @@ class UserRecord extends FirestoreRecord {
   ListeningJourneyStruct get userInfo => _userInfo ?? ListeningJourneyStruct();
   bool hasUserInfo() => _userInfo != null;
 
+  // "location" field.
+  LatLng? _location;
+  LatLng? get location => _location;
+  bool hasLocation() => _location != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -78,6 +83,7 @@ class UserRecord extends FirestoreRecord {
       EndData2Struct.fromMap,
     );
     _userInfo = ListeningJourneyStruct.maybeFromMap(snapshotData['userInfo']);
+    _location = snapshotData['location'] as LatLng?;
   }
 
   static CollectionReference get collection =>
@@ -121,6 +127,7 @@ Map<String, dynamic> createUserRecordData({
   String? phoneNumber,
   DateTime? createdTime,
   ListeningJourneyStruct? userInfo,
+  LatLng? location,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -131,6 +138,7 @@ Map<String, dynamic> createUserRecordData({
       'phone_number': phoneNumber,
       'created_time': createdTime,
       'userInfo': ListeningJourneyStruct().toMap(),
+      'location': location,
     }.withoutNulls,
   );
 
@@ -155,7 +163,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         listEquality.equals(e1?.likeCampain, e2?.likeCampain) &&
         e1?.createdTime == e2?.createdTime &&
         listEquality.equals(e1?.studyRef, e2?.studyRef) &&
-        e1?.userInfo == e2?.userInfo;
+        e1?.userInfo == e2?.userInfo &&
+        e1?.location == e2?.location;
   }
 
   @override
@@ -169,7 +178,8 @@ class UserRecordDocumentEquality implements Equality<UserRecord> {
         e?.likeCampain,
         e?.createdTime,
         e?.studyRef,
-        e?.userInfo
+        e?.userInfo,
+        e?.location
       ]);
 
   @override

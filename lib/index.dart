@@ -25,3 +25,7 @@ export '/upload_ad/upload_ad_widget.dart' show UploadAdWidget;
 export '/ad_detail_page/ad_detail_page_widget.dart' show AdDetailPageWidget;
 export '/village_post_copy/village_post_copy_widget.dart'
     show VillagePostCopyWidget;
+export '/pages/user_location_page/user_location_page_widget.dart'
+    show UserLocationPageWidget;
+export '/profile_image_page/profile_image_page_widget.dart'
+    show ProfileImagePageWidget;

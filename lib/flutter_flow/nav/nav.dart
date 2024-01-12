@@ -238,6 +238,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'villagePostCopy',
           path: '/villagePostCopy',
           builder: (context, params) => const VillagePostCopyWidget(),
+        ),
+        FFRoute(
+          name: 'userLocationPage',
+          path: '/userLocationPage',
+          builder: (context, params) => const UserLocationPageWidget(),
+        ),
+        FFRoute(
+          name: 'profileImagePage',
+          path: '/profileImagePage',
+          builder: (context, params) => const ProfileImagePageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
