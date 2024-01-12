@@ -2,19 +2,15 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import '/backend/backend.dart';
 
-import '../../auth/base_auth_user_provider.dart';
+import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -79,30 +75,36 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
         ),
         FFRoute(
           name: 'loginPage',
           path: '/loginPage',
-          builder: (context, params) => LoginPageWidget(),
+          builder: (context, params) => const LoginPageWidget(),
         ),
         FFRoute(
           name: 'uploadPost',
           path: '/uploadPost',
-          builder: (context, params) => UploadPostWidget(),
+          builder: (context, params) => UploadPostWidget(
+            location: params.getParam('location', ParamType.LatLng),
+            category: params.getParam('category', ParamType.String),
+            title: params.getParam('title', ParamType.String),
+            price: params.getParam('price', ParamType.int),
+            desc: params.getParam('desc', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'allChats',
           path: '/allChats',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'allChats')
-              : AllChatsWidget(),
+              ? const NavBarPage(initialPage: 'allChats')
+              : const AllChatsWidget(),
         ),
         FFRoute(
           name: 'ChatPage',
@@ -120,15 +122,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'profile',
-          path: '/profile',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'profile')
-              : ProfileWidget(),
+              ? const NavBarPage(initialPage: 'HomePage')
+              : const HomePageWidget(),
         ),
         FFRoute(
           name: 'postDetailPage',
@@ -139,16 +134,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'searchPage',
-          path: '/searchPage',
-          builder: (context, params) => SearchPageWidget(),
-        ),
-        FFRoute(
           name: 'communityPage',
           path: '/communityPage',
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'communityPage')
-              : CommunityPageWidget(),
+              ? const NavBarPage(initialPage: 'communityPage')
+              : const CommunityPageWidget(),
         ),
         FFRoute(
           name: 'CTDetailPage',
@@ -159,9 +149,95 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'CUploadPage',
-          path: '/cUploadPage',
-          builder: (context, params) => CUploadPageWidget(),
+          name: 'editProfile',
+          path: '/editProfile',
+          builder: (context, params) => const EditProfileWidget(),
+        ),
+        FFRoute(
+          name: 'account',
+          path: '/account',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'account')
+              : const AccountWidget(),
+        ),
+        FFRoute(
+          name: 'Nearby',
+          path: '/nearby',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'Nearby')
+              : const NearbyWidget(),
+        ),
+        FFRoute(
+          name: 'FAQspage',
+          path: '/fAQspage',
+          builder: (context, params) => const FAQspageWidget(),
+        ),
+        FFRoute(
+          name: 'realEstate',
+          path: '/realEstate',
+          builder: (context, params) => const RealEstateWidget(),
+        ),
+        FFRoute(
+          name: 'showImage',
+          path: '/showImage',
+          builder: (context, params) => ShowImageWidget(
+            postDocument: params.getParam(
+                'postDocument', ParamType.DocumentReference, false, ['post']),
+          ),
+        ),
+        FFRoute(
+          name: 'villagePost',
+          path: '/villagePost',
+          builder: (context, params) => const VillagePostWidget(),
+        ),
+        FFRoute(
+          name: 'mappage',
+          path: '/mappage',
+          builder: (context, params) => const MappageWidget(),
+        ),
+        FFRoute(
+          name: 'mappageCopy',
+          path: '/mappageCopy',
+          builder: (context, params) => MappageCopyWidget(
+            category: params.getParam('category', ParamType.String),
+            title: params.getParam('title', ParamType.String),
+            price: params.getParam('price', ParamType.int),
+            description: params.getParam('description', ParamType.String),
+            negoitable: params.getParam('negoitable', ParamType.bool),
+          ),
+        ),
+        FFRoute(
+          name: 'sample',
+          path: '/sample',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'sample')
+              : const SampleWidget(),
+        ),
+        FFRoute(
+          name: 'showImageCopy',
+          path: '/showImageCommunity',
+          builder: (context, params) => ShowImageCopyWidget(
+            postDocument: params.getParam('postDocument',
+                ParamType.DocumentReference, false, ['communityTalk']),
+          ),
+        ),
+        FFRoute(
+          name: 'uploadAd',
+          path: '/uploadAd',
+          builder: (context, params) => const UploadAdWidget(),
+        ),
+        FFRoute(
+          name: 'adDetailPage',
+          path: '/adDetailPage',
+          builder: (context, params) => AdDetailPageWidget(
+            adReference: params.getParam('adReference',
+                ParamType.DocumentReference, false, ['advertisements']),
+          ),
+        ),
+        FFRoute(
+          name: 'villagePostCopy',
+          path: '/villagePostCopy',
+          builder: (context, params) => const VillagePostCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -359,13 +435,20 @@ class FFRoute {
                   key: state.pageKey,
                   child: child,
                   transitionDuration: transitionInfo.duration,
-                  transitionsBuilder: PageTransition(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          PageTransition(
                     type: transitionInfo.transitionType,
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
                     child: child,
-                  ).transitionsBuilder,
+                  ).buildTransitions(
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ),
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },
@@ -386,5 +469,25 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+}
+
+class RootPageContext {
+  const RootPageContext(this.isRootPage, [this.errorRoute]);
+  final bool isRootPage;
+  final String? errorRoute;
+
+  static bool isInactiveRootPage(BuildContext context) {
+    final rootPageContext = context.read<RootPageContext?>();
+    final isRootPage = rootPageContext?.isRootPage ?? false;
+    final location = GoRouter.of(context).location;
+    return isRootPage &&
+        location != '/' &&
+        location != rootPageContext?.errorRoute;
+  }
+
+  static Widget wrap(Widget child, {String? errorRoute}) => Provider.value(
+        value: RootPageContext(true, errorRoute),
+        child: child,
+      );
 }

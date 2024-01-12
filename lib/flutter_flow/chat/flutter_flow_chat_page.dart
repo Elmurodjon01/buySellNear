@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 class FFChatPage extends StatefulWidget {
-  FFChatPage({
-    Key? key,
+  const FFChatPage({
+    super.key,
     required this.chatInfo,
     this.allowImages = false,
     // Theme settings
@@ -20,7 +20,8 @@ class FFChatPage extends StatefulWidget {
     this.inputHintTextStyle,
     this.inputTextStyle,
     this.emptyChatWidget,
-  }) : super(key: key);
+    this.maxLoadedMessages,
+  });
 
   final FFChatInfo chatInfo;
   final bool allowImages;
@@ -34,6 +35,7 @@ class FFChatPage extends StatefulWidget {
   final TextStyle? inputHintTextStyle;
   final TextStyle? inputTextStyle;
   final Widget? emptyChatWidget;
+  final int? maxLoadedMessages;
 
   @override
   _FFChatPageState createState() => _FFChatPageState();
@@ -69,7 +71,7 @@ class _FFChatPageState extends State<FFChatPage> {
       return;
     }
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      Future.delayed(Duration(milliseconds: 100))
+      Future.delayed(const Duration(milliseconds: 100))
           .then((_) => scrollController.jumpTo(0));
       updateSeenBy();
     });
@@ -77,7 +79,9 @@ class _FFChatPageState extends State<FFChatPage> {
 
   void updateMessages(List<ChatMessagesRecord> chatMessages) {
     final oldLatestTime = latestMessageTime();
-    chatMessages.forEach((m) => allMessages[m.reference.id] = m);
+    for (var m in chatMessages) {
+      allMessages[m.reference.id] = m;
+    }
     messages = allMessages.values.toList();
     messages.sort((a, b) => a.timestamp!.compareTo(b.timestamp!));
     onNewMessage(oldLatestTime, latestMessageTime());
@@ -86,7 +90,9 @@ class _FFChatPageState extends State<FFChatPage> {
 
   StreamSubscription<List<ChatMessagesRecord>> getMessagesStream(
           DocumentReference chatReference) =>
-      FFChatManager.instance.getChatMessages(chatReference).listen((m) {
+      FFChatManager.instance
+          .getChatMessages(chatReference, limit: widget.maxLoadedMessages)
+          .listen((m) {
         if (mounted) {
           updateMessages(m);
           FFChatManager.instance.setLatestMessages(chatReference, messages);
@@ -200,7 +206,7 @@ extension _ChatUserExtensions on UserRecord {
       ? ChatUser(uid: reference.id)
       : ChatUser(
           uid: reference.id,
-          name: displayName!.isNotEmpty ? displayName : 'Friend',
+          name: displayName.isNotEmpty ? displayName : 'Friend',
           avatar: photoUrl,
         );
 }

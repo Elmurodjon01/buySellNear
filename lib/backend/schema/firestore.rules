@@ -40,21 +40,35 @@ service cloud.firestore {
       allow create: if true;
       allow read: if true;
       allow write: if false;
-      allow delete: if false;
+      allow delete: if true;
     }
 
     match /chat_messages/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
-      allow delete: if false;
+      allow delete: if true;
     }
 
     match /communityTalk/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
-      allow delete: if false;
+      allow delete: if true;
+    }
+
+    match /userCredentials/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if true;
+    }
+
+    match /advertisements/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if true;
     }
   }
 }

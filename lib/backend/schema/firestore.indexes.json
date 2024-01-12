@@ -15,6 +15,20 @@
       ]
     },
     {
+      "collectionGroup": "comment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "communitTalkRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "commentTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "chat_messages",
       "queryScope": "COLLECTION",
       "fields": [

@@ -1,19 +1,8 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'login_page_widget.dart' show LoginPageWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-class LoginPageModel extends FlutterFlowModel {
+class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -23,47 +12,69 @@ class LoginPageModel extends FlutterFlowModel {
       tabBarController != null ? tabBarController!.index : 0;
 
   // State field(s) for logemailAddress widget.
+  FocusNode? logemailAddressFocusNode;
   TextEditingController? logemailAddressController;
   String? Function(BuildContext, String?)? logemailAddressControllerValidator;
   // State field(s) for logpassword widget.
+  FocusNode? logpasswordFocusNode;
   TextEditingController? logpasswordController;
   late bool logpasswordVisibility;
   String? Function(BuildContext, String?)? logpasswordControllerValidator;
-  // State field(s) for signimage widget.
-  TextEditingController? signimageController;
-  String? Function(BuildContext, String?)? signimageControllerValidator;
   // State field(s) for signemailadd widget.
+  FocusNode? signemailaddFocusNode;
   TextEditingController? signemailaddController;
   String? Function(BuildContext, String?)? signemailaddControllerValidator;
   // State field(s) for signname widget.
+  FocusNode? signnameFocusNode;
   TextEditingController? signnameController;
   String? Function(BuildContext, String?)? signnameControllerValidator;
+  // State field(s) for phoneNum widget.
+  FocusNode? phoneNumFocusNode;
+  TextEditingController? phoneNumController;
+  String? Function(BuildContext, String?)? phoneNumControllerValidator;
   // State field(s) for signpass widget.
+  FocusNode? signpassFocusNode;
   TextEditingController? signpassController;
   late bool signpassVisibility;
   String? Function(BuildContext, String?)? signpassControllerValidator;
   // State field(s) for signpassCheck widget.
+  FocusNode? signpassCheckFocusNode;
   TextEditingController? signpassCheckController;
   late bool signpassCheckVisibility;
   String? Function(BuildContext, String?)? signpassCheckControllerValidator;
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     logpasswordVisibility = false;
     signpassVisibility = false;
     signpassCheckVisibility = false;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
+    logemailAddressFocusNode?.dispose();
     logemailAddressController?.dispose();
+
+    logpasswordFocusNode?.dispose();
     logpasswordController?.dispose();
-    signimageController?.dispose();
+
+    signemailaddFocusNode?.dispose();
     signemailaddController?.dispose();
+
+    signnameFocusNode?.dispose();
     signnameController?.dispose();
+
+    phoneNumFocusNode?.dispose();
+    phoneNumController?.dispose();
+
+    signpassFocusNode?.dispose();
     signpassController?.dispose();
+
+    signpassCheckFocusNode?.dispose();
     signpassCheckController?.dispose();
   }
 

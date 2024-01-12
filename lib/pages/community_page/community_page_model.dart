@@ -1,32 +1,26 @@
-import '/backend/backend.dart';
-import '/components/custom_app_bar_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_toggle_icon.dart';
+import '/components/custom_appbar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
+import 'community_page_widget.dart' show CommunityPageWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-class CommunityPageModel extends FlutterFlowModel {
+class CommunityPageModel extends FlutterFlowModel<CommunityPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for customAppBar component.
-  late CustomAppBarModel customAppBarModel;
+  // Model for customAppbar component.
+  late CustomAppbarModel customAppbarModel;
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
-    customAppBarModel = createModel(context, () => CustomAppBarModel());
+    customAppbarModel = createModel(context, () => CustomAppbarModel());
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
-    customAppBarModel.dispose();
+    customAppbarModel.dispose();
   }
 
   /// Action blocks are added here.

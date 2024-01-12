@@ -24,9 +24,9 @@ class FFChatInfo {
     if (groupMembers == null) {
       return '';
     }
-    final numOthers = chatRecord.users!.length - otherUsersList.length - 1;
+    final numOthers = chatRecord.users.length - otherUsersList.length - 1;
     return otherUsersList.map((m) {
-          if (m.displayName!.isNotEmpty) {
+          if (m.displayName.isNotEmpty) {
             return m.displayName;
           }
           return 'Friend';
@@ -40,14 +40,14 @@ class FFChatInfo {
     final userSentLastMessage =
         chatRecord.lastMessageSentBy == currentUserReference;
     var lastChatText = chatRecord.lastMessage;
-    if (userSentLastMessage && lastChatText!.isNotEmpty) {
+    if (userSentLastMessage && lastChatText.isNotEmpty) {
       lastChatText = 'You: $lastChatText';
     }
-    return lastChatText!;
+    return lastChatText;
   }
 
   String chatPreviewPic() {
-    if (groupMembers == null || otherUsersList.length == 0) {
+    if (groupMembers == null || otherUsersList.isEmpty) {
       return '';
     }
     final userSentLastMessage =
@@ -58,7 +58,7 @@ class FFChatInfo {
             (m) => m.reference == chatRecord.lastMessageSentBy,
             orElse: () => otherUsersList.first,
           );
-    return chatUser.photoUrl!;
+    return chatUser.photoUrl;
   }
 }
 
@@ -67,17 +67,19 @@ class FFChatManager {
 
   // Cache that will ensure chat queries are kept alive. By default we only keep
   // at most 5 chat streams in the cache.
-  static Map<String, Stream<List<ChatMessagesRecord>>> _chatMessages = {};
-  static Map<String, List<ChatMessagesRecord>> _chatMessagesCache = {};
+  static final Map<String, Stream<List<ChatMessagesRecord>>> _chatMessages = {};
+  static final Map<String, List<ChatMessagesRecord>> _chatMessagesCache = {};
   // Keep a map from user uid to the respective chat document reference.
-  static Map<String, DocumentReference> _userChats = {};
+  static final Map<String, DocumentReference> _userChats = {};
   static DocumentReference? _currentUser;
 
   static FFChatManager? _instance;
   static FFChatManager get instance => _instance ??= FFChatManager._();
 
   Stream<List<ChatMessagesRecord>> getChatMessages(
-      DocumentReference chatReference) {
+    DocumentReference chatReference, {
+    int? limit,
+  }) {
     final chatId = chatReference.id;
     if (!_chatMessages.containsKey(chatId) &&
         _chatMessages.length >= kMaxChatCacheSize) {
@@ -89,7 +91,7 @@ class FFChatManager {
             'timestamp',
             descending: true,
           ),
-      limit: 30,
+      limit: limit ?? 30,
     );
     return _chatMessages[chatId]!;
   }
@@ -103,7 +105,7 @@ class FFChatManager {
 
   DocumentReference getChatUserRef(ChatsRecord chat) {
     final userRef =
-        chat.users!.firstWhere((d) => d.path != currentUserReference?.path);
+        chat.users.firstWhere((d) => d.path != currentUserReference?.path);
     _userChats[userRef.id] = chat.reference;
     return userRef;
   }
@@ -129,7 +131,7 @@ class FFChatManager {
             )
             .switchMap(ChatsRecord.getDocument);
     return chatStream.asyncMap((chat) async {
-      var userRefs = chat.users!.toSet();
+      var userRefs = chat.users.toSet();
       if (chatRecord != null) {
         // If from chat preview widget, don't bother querying all chat users
         // as this could be computationally expensive. Instead, take at most
@@ -186,7 +188,7 @@ class FFChatManager {
     // case, it's safer to wait a second to ensure the document was created.
     chatRef = _userChats[otherUser.id];
     if (chatRef != null) {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       return chatRef;
     }
     // Finally, create and cache a chat between these two users.
@@ -219,7 +221,7 @@ class FFChatManager {
     if (chat == null) {
       return null;
     }
-    final newUsers = {...chat.users!, ...users}.toList();
+    final newUsers = {...chat.users, ...users}.toList();
     // Cannot add users to a 1:1 chat.
     if (chat.userA != null || chat.userB != null || users.isEmpty) {
       return chat;
@@ -233,7 +235,7 @@ class FFChatManager {
 
   Future<ChatsRecord> removeGroupMembers(
       ChatsRecord chat, List<DocumentReference> users) async {
-    final newUsers = (chat.users!.toSet()..removeAll(users)).toList();
+    final newUsers = (chat.users.toSet()..removeAll(users)).toList();
     // Can't reduce group chat to fewer than 3 members.
     if (newUsers.length < 3) {
       return chat;

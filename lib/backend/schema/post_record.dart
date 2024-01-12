@@ -3,16 +3,15 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class PostRecord extends FirestoreRecord {
   PostRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 
@@ -61,6 +60,31 @@ class PostRecord extends FirestoreRecord {
   List<String> get uploadedImages => _uploadedImages ?? const [];
   bool hasUploadedImages() => _uploadedImages != null;
 
+  // "price" field.
+  int? _price;
+  int get price => _price ?? 0;
+  bool hasPrice() => _price != null;
+
+  // "location" field.
+  String? _location;
+  String get location => _location ?? '';
+  bool hasLocation() => _location != null;
+
+  // "forSale" field.
+  bool? _forSale;
+  bool get forSale => _forSale ?? false;
+  bool hasForSale() => _forSale != null;
+
+  // "negoitable" field.
+  bool? _negoitable;
+  bool get negoitable => _negoitable ?? false;
+  bool hasNegoitable() => _negoitable != null;
+
+  // "meetLocation" field.
+  LatLng? _meetLocation;
+  LatLng? get meetLocation => _meetLocation;
+  bool hasMeetLocation() => _meetLocation != null;
+
   void _initializeFields() {
     _category = snapshotData['category'] as String?;
     _title = snapshotData['title'] as String?;
@@ -71,6 +95,11 @@ class PostRecord extends FirestoreRecord {
     _likeUsers = getDataList(snapshotData['likeUsers']);
     _commentCount = getDataList(snapshotData['commentCount']);
     _uploadedImages = getDataList(snapshotData['uploadedImages']);
+    _price = castToType<int>(snapshotData['price']);
+    _location = snapshotData['location'] as String?;
+    _forSale = snapshotData['forSale'] as bool?;
+    _negoitable = snapshotData['negoitable'] as bool?;
+    _meetLocation = snapshotData['meetLocation'] as LatLng?;
   }
 
   static CollectionReference get collection =>
@@ -113,6 +142,11 @@ Map<String, dynamic> createPostRecordData({
   DateTime? uploadTime,
   DocumentReference? uploadUser,
   int? like,
+  int? price,
+  String? location,
+  bool? forSale,
+  bool? negoitable,
+  LatLng? meetLocation,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -122,6 +156,11 @@ Map<String, dynamic> createPostRecordData({
       'uploadTime': uploadTime,
       'uploadUser': uploadUser,
       'like': like,
+      'price': price,
+      'location': location,
+      'forSale': forSale,
+      'negoitable': negoitable,
+      'meetLocation': meetLocation,
     }.withoutNulls,
   );
 
@@ -142,7 +181,12 @@ class PostRecordDocumentEquality implements Equality<PostRecord> {
         e1?.like == e2?.like &&
         listEquality.equals(e1?.likeUsers, e2?.likeUsers) &&
         listEquality.equals(e1?.commentCount, e2?.commentCount) &&
-        listEquality.equals(e1?.uploadedImages, e2?.uploadedImages);
+        listEquality.equals(e1?.uploadedImages, e2?.uploadedImages) &&
+        e1?.price == e2?.price &&
+        e1?.location == e2?.location &&
+        e1?.forSale == e2?.forSale &&
+        e1?.negoitable == e2?.negoitable &&
+        e1?.meetLocation == e2?.meetLocation;
   }
 
   @override
@@ -155,7 +199,12 @@ class PostRecordDocumentEquality implements Equality<PostRecord> {
         e?.like,
         e?.likeUsers,
         e?.commentCount,
-        e?.uploadedImages
+        e?.uploadedImages,
+        e?.price,
+        e?.location,
+        e?.forSale,
+        e?.negoitable,
+        e?.meetLocation
       ]);
 
   @override

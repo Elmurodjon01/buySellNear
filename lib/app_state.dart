@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -35,46 +34,167 @@ class FFAppState extends ChangeNotifier {
 
   String _bottomaction = '0';
   String get bottomaction => _bottomaction;
-  set bottomaction(String _value) {
-    _bottomaction = _value;
+  set bottomaction(String value) {
+    _bottomaction = value;
   }
 
   String _mainmenu = '0';
   String get mainmenu => _mainmenu;
-  set mainmenu(String _value) {
-    _mainmenu = _value;
+  set mainmenu(String value) {
+    _mainmenu = value;
   }
 
   int _galleryHeight = 100;
   int get galleryHeight => _galleryHeight;
-  set galleryHeight(int _value) {
-    _galleryHeight = _value;
+  set galleryHeight(int value) {
+    _galleryHeight = value;
   }
 
   bool _ex = false;
   bool get ex => _ex;
-  set ex(bool _value) {
-    _ex = _value;
+  set ex(bool value) {
+    _ex = value;
   }
 
   bool _likeToggle = false;
   bool get likeToggle => _likeToggle;
-  set likeToggle(bool _value) {
-    _likeToggle = _value;
-    prefs.setBool('ff_likeToggle', _value);
+  set likeToggle(bool value) {
+    _likeToggle = value;
+    prefs.setBool('ff_likeToggle', value);
   }
 
   int _isFamous = 4;
   int get isFamous => _isFamous;
-  set isFamous(int _value) {
-    _isFamous = _value;
-    prefs.setInt('ff_isFamous', _value);
+  set isFamous(int value) {
+    _isFamous = value;
+    prefs.setInt('ff_isFamous', value);
   }
 
   DocumentReference? _comments;
   DocumentReference? get comments => _comments;
-  set comments(DocumentReference? _value) {
-    _comments = _value;
+  set comments(DocumentReference? value) {
+    _comments = value;
+  }
+
+  int _pageIndex = 0;
+  int get pageIndex => _pageIndex;
+  set pageIndex(int value) {
+    _pageIndex = value;
+  }
+
+  List<String> _locations = ['용현 1, 4 동', '연수구 123', '제물포', '도화', '서추동 '];
+  List<String> get locations => _locations;
+  set locations(List<String> value) {
+    _locations = value;
+  }
+
+  void addToLocations(String value) {
+    _locations.add(value);
+  }
+
+  void removeFromLocations(String value) {
+    _locations.remove(value);
+  }
+
+  void removeAtIndexFromLocations(int index) {
+    _locations.removeAt(index);
+  }
+
+  void updateLocationsAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _locations[index] = updateFn(_locations[index]);
+  }
+
+  void insertAtIndexInLocations(int index, String value) {
+    _locations.insert(index, value);
+  }
+
+  int _villageChoice = 0;
+  int get villageChoice => _villageChoice;
+  set villageChoice(int value) {
+    _villageChoice = value;
+  }
+
+  List<String> _isImage = [
+    'https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg'
+  ];
+  List<String> get isImage => _isImage;
+  set isImage(List<String> value) {
+    _isImage = value;
+  }
+
+  void addToIsImage(String value) {
+    _isImage.add(value);
+  }
+
+  void removeFromIsImage(String value) {
+    _isImage.remove(value);
+  }
+
+  void removeAtIndexFromIsImage(int index) {
+    _isImage.removeAt(index);
+  }
+
+  void updateIsImageAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _isImage[index] = updateFn(_isImage[index]);
+  }
+
+  void insertAtIndexInIsImage(int index, String value) {
+    _isImage.insert(index, value);
+  }
+
+  ListeningJourneyStruct _studyTie = ListeningJourneyStruct();
+  ListeningJourneyStruct get studyTie => _studyTie;
+  set studyTie(ListeningJourneyStruct value) {
+    _studyTie = value;
+  }
+
+  void updateStudyTieStruct(Function(ListeningJourneyStruct) updateFn) {
+    updateFn(_studyTie);
+  }
+
+  EndData2Struct _endData = EndData2Struct();
+  EndData2Struct get endData => _endData;
+  set endData(EndData2Struct value) {
+    _endData = value;
+  }
+
+  void updateEndDataStruct(Function(EndData2Struct) updateFn) {
+    updateFn(_endData);
+  }
+
+  List<DateTime> _datas = [];
+  List<DateTime> get datas => _datas;
+  set datas(List<DateTime> value) {
+    _datas = value;
+  }
+
+  void addToDatas(DateTime value) {
+    _datas.add(value);
+  }
+
+  void removeFromDatas(DateTime value) {
+    _datas.remove(value);
+  }
+
+  void removeAtIndexFromDatas(int index) {
+    _datas.removeAt(index);
+  }
+
+  void updateDatasAtIndex(
+    int index,
+    DateTime Function(DateTime) updateFn,
+  ) {
+    _datas[index] = updateFn(_datas[index]);
+  }
+
+  void insertAtIndexInDatas(int index, DateTime value) {
+    _datas.insert(index, value);
   }
 }
 
