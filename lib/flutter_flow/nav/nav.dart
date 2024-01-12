@@ -233,6 +233,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             adReference: params.getParam('adReference',
                 ParamType.DocumentReference, false, ['advertisements']),
           ),
+        ),
+        FFRoute(
+          name: 'villagePostCopy',
+          path: '/villagePostCopy',
+          builder: (context, params) => const VillagePostCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

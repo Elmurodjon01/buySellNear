@@ -182,8 +182,8 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                               .start,
                                                       children: [
                                                         Container(
-                                                          width: 120.0,
-                                                          height: 40.0,
+                                                          width: 100.0,
+                                                          height: 30.0,
                                                           decoration:
                                                               BoxDecoration(
                                                             color: const Color(
@@ -205,7 +205,23 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                                       .justify,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodyMedium,
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    color: const Color(
+                                                                        0xFF272626),
+                                                                    fontSize:
+                                                                        13.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                  ),
                                                             ),
                                                           ),
                                                         ),
@@ -272,7 +288,9 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                               desktop: false,
                                                             ),
                                                             child: AutoSizeText(
-                                                              'desc of the post that user has uploaded',
+                                                              listViewCommunityTalkRecord
+                                                                  .content,
+                                                              maxLines: 1,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .labelMedium
@@ -318,10 +336,13 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    random_data
-                                                                        .randomName(
-                                                                            true,
-                                                                            false),
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      listViewCommunityTalkRecord
+                                                                          .address
+                                                                          ?.toString(),
+                                                                      '주소가 없음 ',
+                                                                    ),
                                                                     style:
                                                                         const TextStyle(
                                                                       color: Color(
@@ -352,7 +373,7 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                               ))
                                                                 Text(
                                                                   dateTimeFormat(
-                                                                      'M/d H:mm',
+                                                                      'relative',
                                                                       listViewCommunityTalkRecord
                                                                           .uploadTime!),
                                                                   style:
@@ -507,14 +528,66 @@ class _CommunityPageWidgetState extends State<CommunityPageWidget> {
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  child: Text(
-                                                                    listViewCommunityTalkRecord
-                                                                        .commentCount
-                                                                        .length
-                                                                        .toString(),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium,
+                                                                  child: StreamBuilder<
+                                                                      List<
+                                                                          CommentRecord>>(
+                                                                    stream:
+                                                                        queryCommentRecord(
+                                                                      queryBuilder:
+                                                                          (commentRecord) =>
+                                                                              commentRecord.where(
+                                                                        'communitTalkRef',
+                                                                        isEqualTo:
+                                                                            listViewCommunityTalkRecord.reference,
+                                                                      ),
+                                                                      singleRecord:
+                                                                          true,
+                                                                    ),
+                                                                    builder:
+                                                                        (context,
+                                                                            snapshot) {
+                                                                      // Customize what your widget looks like when it's loading.
+                                                                      if (!snapshot
+                                                                          .hasData) {
+                                                                        return Center(
+                                                                          child:
+                                                                              SizedBox(
+                                                                            width:
+                                                                                50.0,
+                                                                            height:
+                                                                                50.0,
+                                                                            child:
+                                                                                SpinKitChasingDots(
+                                                                              color: FlutterFlowTheme.of(context).info,
+                                                                              size: 50.0,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      }
+                                                                      List<CommentRecord>
+                                                                          textCommentRecordList =
+                                                                          snapshot
+                                                                              .data!;
+                                                                      // Return an empty Container when the item does not exist.
+                                                                      if (snapshot
+                                                                          .data!
+                                                                          .isEmpty) {
+                                                                        return Container();
+                                                                      }
+                                                                      final textCommentRecord = textCommentRecordList
+                                                                              .isNotEmpty
+                                                                          ? textCommentRecordList
+                                                                              .first
+                                                                          : null;
+                                                                      return Text(
+                                                                        random_data
+                                                                            .randomInteger(0,
+                                                                                10)
+                                                                            .toString(),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium,
+                                                                      );
+                                                                    },
                                                                   ),
                                                                 ),
                                                               ],

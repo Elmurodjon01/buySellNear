@@ -20,11 +20,6 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   TextEditingController? logpasswordController;
   late bool logpasswordVisibility;
   String? Function(BuildContext, String?)? logpasswordControllerValidator;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
-
   // State field(s) for signemailadd widget.
   FocusNode? signemailaddFocusNode;
   TextEditingController? signemailaddController;
@@ -33,6 +28,10 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   FocusNode? signnameFocusNode;
   TextEditingController? signnameController;
   String? Function(BuildContext, String?)? signnameControllerValidator;
+  // State field(s) for phoneNum widget.
+  FocusNode? phoneNumFocusNode;
+  TextEditingController? phoneNumController;
+  String? Function(BuildContext, String?)? phoneNumControllerValidator;
   // State field(s) for signpass widget.
   FocusNode? signpassFocusNode;
   TextEditingController? signpassController;
@@ -68,6 +67,9 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
     signnameFocusNode?.dispose();
     signnameController?.dispose();
+
+    phoneNumFocusNode?.dispose();
+    phoneNumController?.dispose();
 
     signpassFocusNode?.dispose();
     signpassController?.dispose();

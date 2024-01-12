@@ -498,7 +498,8 @@ class _CTDetailPageWidgetState extends State<CTDetailPageWidget> {
                                                           isEqualTo: widget
                                                               .communityTalkRef,
                                                         )
-                                                        .orderBy('commentTime'),
+                                                        .orderBy('commentTime',
+                                                            descending: true),
                                               ),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.

@@ -390,7 +390,7 @@ class _PostDetailPageWidgetState extends State<PostDetailPageWidget> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    'something level',
+                                                    'User address',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium

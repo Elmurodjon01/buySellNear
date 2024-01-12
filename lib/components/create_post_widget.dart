@@ -214,7 +214,7 @@ class _CreatePostWidgetState extends State<CreatePostWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'villagePost',
+                                      'villagePostCopy',
                                       extra: <String, dynamic>{
                                         kTransitionInfoKey: const TransitionInfo(
                                           hasTransition: true,

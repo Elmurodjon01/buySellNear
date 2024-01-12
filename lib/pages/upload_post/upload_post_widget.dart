@@ -312,24 +312,24 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                     },
                   ),
                 ),
-                Builder(
-                  builder: (context) {
-                    final uploadedImages = _model.uploadedFileUrls.toList();
-                    return SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: List.generate(uploadedImages.length,
-                            (uploadedImagesIndex) {
-                          final uploadedImagesItem =
-                              uploadedImages[uploadedImagesIndex];
+                Container(
+                  width: 270.0,
+                  height: 50.0,
+                  decoration: const BoxDecoration(),
+                  child: Builder(
+                    builder: (context) {
+                      final uploadimage = _model.uploadedFileUrls.toList();
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: uploadimage.length,
+                        itemBuilder: (context, uploadimageIndex) {
+                          final uploadimageItem = uploadimage[uploadimageIndex];
                           return Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 7.0, 0.0, 0.0, 0.0),
                             child: Container(
                               width: 50.0,
-                              height: 50.0,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 border: Border.all(
@@ -338,17 +338,21 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                                 ),
                               ),
                               alignment: const AlignmentDirectional(0.0, 0.0),
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                color: FlutterFlowTheme.of(context).accent2,
-                                size: 24.0,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  uploadimageItem,
+                                  width: 300.0,
+                                  height: 200.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           );
-                        }),
-                      ),
-                    );
-                  },
+                        },
+                      );
+                    },
+                  ),
                 ),
               ].addToStart(const SizedBox(width: 5.0)),
             ),
@@ -378,7 +382,8 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           .override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).labelLargeFamily,
-                            color: const Color(0xFFA3A2A2),
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).labelLargeFamily),
                           ),
@@ -442,7 +447,6 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           const Duration(milliseconds: 2000),
                           () => setState(() {}),
                         ),
-                        autofocus: true,
                         textCapitalization: TextCapitalization.sentences,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -578,7 +582,6 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                             const Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
-                          autofocus: true,
                           textCapitalization: TextCapitalization.sentences,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -722,7 +725,6 @@ class _UploadPostWidgetState extends State<UploadPostWidget> {
                           const Duration(milliseconds: 2000),
                           () => setState(() {}),
                         ),
-                        autofocus: true,
                         textCapitalization: TextCapitalization.sentences,
                         obscureText: false,
                         decoration: InputDecoration(

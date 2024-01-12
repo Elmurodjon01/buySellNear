@@ -1,13 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
+import '/components/profile_image_pop_widget.dart';
 import '/components/sign_up_fail_pop_up_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -114,6 +113,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
     _model.signnameController ??= TextEditingController();
     _model.signnameFocusNode ??= FocusNode();
+
+    _model.phoneNumController ??= TextEditingController();
+    _model.phoneNumFocusNode ??= FocusNode();
 
     _model.signpassController ??= TextEditingController();
     _model.signpassFocusNode ??= FocusNode();
@@ -862,260 +864,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    -1.0, 0.0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          25.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'Upload a profile image *',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .main1,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            width: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .width *
-                                                                0.98,
-                                                            decoration:
-                                                                const BoxDecoration(),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: [
-                                                                Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          -1.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            5.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Container(
-                                                                      width:
-                                                                          150.0,
-                                                                      height:
-                                                                          100.0,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(7.0),
-                                                                        border:
-                                                                            Border.all(
-                                                                          width:
-                                                                              1.0,
-                                                                        ),
-                                                                      ),
-                                                                      child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(8.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          valueOrDefault<
-                                                                              String>(
-                                                                            _model.uploadedFileUrl,
-                                                                            'https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png',
-                                                                          ),
-                                                                          width:
-                                                                              150.0,
-                                                                          height:
-                                                                              200.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    final selectedMedia =
-                                                                        await selectMediaWithSourceBottomSheet(
-                                                                      context:
-                                                                          context,
-                                                                      allowPhoto:
-                                                                          true,
-                                                                    );
-                                                                    if (selectedMedia !=
-                                                                            null &&
-                                                                        selectedMedia.every((m) => validateFileFormat(
-                                                                            m.storagePath,
-                                                                            context))) {
-                                                                      setState(() =>
-                                                                          _model.isDataUploading =
-                                                                              true);
-                                                                      var selectedUploadedFiles =
-                                                                          <FFUploadedFile>[];
-
-                                                                      var downloadUrls =
-                                                                          <String>[];
-                                                                      try {
-                                                                        showUploadMessage(
-                                                                          context,
-                                                                          'Uploading file...',
-                                                                          showLoading:
-                                                                              true,
-                                                                        );
-                                                                        selectedUploadedFiles = selectedMedia
-                                                                            .map((m) => FFUploadedFile(
-                                                                                  name: m.storagePath.split('/').last,
-                                                                                  bytes: m.bytes,
-                                                                                  height: m.dimensions?.height,
-                                                                                  width: m.dimensions?.width,
-                                                                                  blurHash: m.blurHash,
-                                                                                ))
-                                                                            .toList();
-
-                                                                        downloadUrls = (await Future
-                                                                                .wait(
-                                                                          selectedMedia
-                                                                              .map(
-                                                                            (m) async =>
-                                                                                await uploadData(m.storagePath, m.bytes),
-                                                                          ),
-                                                                        ))
-                                                                            .where((u) =>
-                                                                                u !=
-                                                                                null)
-                                                                            .map((u) =>
-                                                                                u!)
-                                                                            .toList();
-                                                                      } finally {
-                                                                        ScaffoldMessenger.of(context)
-                                                                            .hideCurrentSnackBar();
-                                                                        _model.isDataUploading =
-                                                                            false;
-                                                                      }
-                                                                      if (selectedUploadedFiles.length ==
-                                                                              selectedMedia
-                                                                                  .length &&
-                                                                          downloadUrls.length ==
-                                                                              selectedMedia.length) {
-                                                                        setState(
-                                                                            () {
-                                                                          _model.uploadedLocalFile =
-                                                                              selectedUploadedFiles.first;
-                                                                          _model.uploadedFileUrl =
-                                                                              downloadUrls.first;
-                                                                        });
-                                                                        showUploadMessage(
-                                                                            context,
-                                                                            'Success!');
-                                                                      } else {
-                                                                        setState(
-                                                                            () {});
-                                                                        showUploadMessage(
-                                                                            context,
-                                                                            'Failed to upload data');
-                                                                        return;
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  text:
-                                                                      'Upload',
-                                                                  icon: const Icon(
-                                                                    Icons
-                                                                        .upload_file,
-                                                                    size: 15.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width:
-                                                                        120.0,
-                                                                    height:
-                                                                        35.0,
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                          color:
-                                                                              Colors.white,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                        ),
-                                                                    elevation:
-                                                                        3.0,
-                                                                    borderSide:
-                                                                        const BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            15.0),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
                                                       Padding(
                                                         padding:
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
-                                                                    12.0,
+                                                                    18.0,
                                                                     24.0,
                                                                     0.0),
                                                         child: TextFormField(
@@ -1350,6 +1104,131 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               ),
                                                           validator: _model
                                                               .signnameControllerValidator
+                                                              .asValidator(
+                                                                  context),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
+                                                                    12.0,
+                                                                    24.0,
+                                                                    0.0),
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .phoneNumController,
+                                                          focusNode: _model
+                                                              .phoneNumFocusNode,
+                                                          obscureText: false,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            labelText: '연락처',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodySmallFamily,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodySmallFamily),
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall,
+                                                            enabledBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Color(
+                                                                    0xFFD1D1D1),
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  const BorderSide(
+                                                                color: Color(
+                                                                    0x00000000),
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                OutlineInputBorder(
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                            filled: true,
+                                                            fillColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryBackground,
+                                                            contentPadding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        24.0,
+                                                                        20.0,
+                                                                        24.0),
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                fontSize: 14.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .number,
+                                                          validator: _model
+                                                              .phoneNumControllerValidator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -1717,10 +1596,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         _model
                                                                             .signnameController
                                                                             .text,
-                                                                    photoUrl: _model
-                                                                        .uploadedFileUrl,
-                                                                    createdTime:
-                                                                        getCurrentTimestamp,
+                                                                    phoneNumber:
+                                                                        _model
+                                                                            .phoneNumController
+                                                                            .text,
                                                                   ));
 
                                                               navigate = () =>
@@ -1728,6 +1607,39 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       'HomePage',
                                                                       context
                                                                           .mounted);
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return GestureDetector(
+                                                                    onTap: () => _model
+                                                                            .unfocusNode
+                                                                            .canRequestFocus
+                                                                        ? FocusScope.of(context).requestFocus(_model
+                                                                            .unfocusNode)
+                                                                        : FocusScope.of(context)
+                                                                            .unfocus(),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: MediaQuery
+                                                                          .viewInsetsOf(
+                                                                              context),
+                                                                      child:
+                                                                          const ProfileImagePopWidget(),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(
+                                                                      () {}));
                                                             } else {
                                                               await showModalBottomSheet(
                                                                 isScrollControlled:

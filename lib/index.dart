@@ -23,3 +23,5 @@ export '/sample/sample_widget.dart' show SampleWidget;
 export '/show_image_copy/show_image_copy_widget.dart' show ShowImageCopyWidget;
 export '/upload_ad/upload_ad_widget.dart' show UploadAdWidget;
 export '/ad_detail_page/ad_detail_page_widget.dart' show AdDetailPageWidget;
+export '/village_post_copy/village_post_copy_widget.dart'
+    show VillagePostCopyWidget;
